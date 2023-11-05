@@ -4,7 +4,10 @@ const mongoose=require("mongoose");
 app.use(express.json());
 const passport=require("passport");
 require("dotenv").config();
+const ejs = require("ejs");
 const authR=require("./routes/auth");
+app.set('view engine', 'ejs');
+app.use(express.static("public"));
 mongoose.connect("mongodb+srv://mittal_udit:"+process.env.MONGO_PASS+"@bepop.qdakrai.mongodb.net/?retryWrites=true&w=majority",{
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -30,7 +33,7 @@ passport.use( new JwtStrategy(opts,function(jwt_payload,done){
     });
 }));
 app.get("/",(req,res)=>{
-    res.send("its working!");
+    res.render("home_pg");
 });
 app.use("/auth",authR);
 app.listen(3000,()=>{
