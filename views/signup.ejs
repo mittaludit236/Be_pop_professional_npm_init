@@ -13,12 +13,10 @@
 
         <!-- favicon -->
         <link rel="shortcut icon" href="assets/images/favicon.ico">
-
-        <!-- Css -->
-        <!-- Main Css -->
         <link href="assets/libs/%40iconscout/unicons/css/line.css" type="text/css" rel="stylesheet">
         <link href="assets/libs/%40mdi/font/css/materialdesignicons.min.css" rel="stylesheet" type="text/css">
         <link href="assets/css/tailwind.min.css" rel="stylesheet" type="text/css">
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
     </head>
     
@@ -47,17 +45,17 @@
                                 <div class="grid grid-cols-1">
                                     <div class="mb-4 ltr:text-left rtl:text-right">
                                         <label class="font-semibold" for="RegisterName">Your Name:</label>
-                                        <input id="RegisterName" name="Name" type="text" class="form-input mt-3 rounded-md" placeholder="Harry">
+                                        <input id="RegisterName" name="Name" type="text" class="form-input mt-3 rounded-md" placeholder="Harry" required="true">
                                     </div>
     
                                     <div class="mb-4 ltr:text-left rtl:text-right">
                                         <label class="font-semibold" for="LoginEmail">Email Address:</label>
-                                        <input id="LoginEmail" name="email" type="email" class="form-input mt-3 rounded-md" placeholder="name@example.com">
+                                        <input id="LoginEmail" name="email" type="email" class="form-input mt-3 rounded-md" placeholder="name@example.com" required="true">
                                     </div>
     
                                     <div class="mb-4 ltr:text-left rtl:text-right">
                                         <label class="font-semibold" for="LoginPassword">Password:</label>
-                                        <input id="LoginPassword" name="password" type="password" class="form-input mt-3 rounded-md" placeholder="Password:">
+                                        <input id="LoginPassword" name="password" type="password" class="form-input mt-3 rounded-md" placeholder="Password:" required="true">
                                     </div>
     
                                     <div class="mb-4">
@@ -68,28 +66,22 @@
                                     </div>
     
                                     <div class="mb-4">
-                                        <input type="submit" class="btn bg-emerald-600 hover:bg-emerald-700 border-emerald-600 hover:border-emerald-700 text-white rounded-md w-full" value="Register">
+                                        <button type="button submit" class="btn bg-emerald-600 hover:bg-emerald-700 border-emerald-600 hover:border-emerald-700 text-white rounded-md w-full" data-toggle="modal" data-target="#myModal">Register</button>
                                     </div>
                                     <div class="text-center">
-                                        <span class="text-slate-400 me-2">Already have an account ? </span> <a href="login.html" class="text-black dark:text-white font-bold">Sign in</a>
+                                        <span class="text-slate-400 me-2">Already have an account ? </span> <a href="/sign_in" class="text-black dark:text-white font-bold">Sign in</a>
                                     
                                     </div>
                                 </div>
                             </form>
                         </div>
-                        
-                        <div class="px-6 py-2 bg-slate-50 dark:bg-slate-800 text-center">
-
-                        </div>
                     </div>
                 </div>
             </div>
         </section><!--end section -->
-
         <div class="fixed bottom-3 end-3">
             <a href="#" class="back-button btn btn-icon bg-emerald-600 hover:bg-emerald-700 border-emerald-600 hover:border-emerald-700 text-white rounded-md"><i data-feather="arrow-left" class="h-4 w-4"></i></a>
         </div>
-
         <!-- Switcher -->
         <div class="fixed top-1/4 -left-2 z-50">
             <span class="relative inline-block rotate-90">
@@ -101,16 +93,50 @@
                 </label>
             </span>
         </div>
-
-     
+        <form action="/sign_up" method="post">
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="registrationModalLabel">OTP VERIFICATION</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                     
+                            <div class="form-group">
+                                <label for="otp">Enter OTP  </label>
+                                <input type="number" class="form-control" id="otp" placeholder="Enter the OTP you received" name="Otp">
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+                        <button type="submit" class="btn btn-primary">Register</button>
+                    </div>
+         </div>  
+      </div>
+      </div>
+     </form>
         <!-- Switcher -->
 
 
         <!-- JAVASCRIPTS -->
-        <script src="assets/libs/feather-icons/feather.min.js"></script>
+        <!-- <script src="assets/libs/feather-icons/feather.min.js"></script> -->
         <script src="assets/js/plugins.init.js"></script>
         <script src="assets/js/app.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <!-- JAVASCRIPTS -->
+        <script>
+            const urlParams = new URLSearchParams(window.location.search);
+  const error = urlParams.get('error');
+
+  if (error === 'incorrect-otp') {
+    alert('Incorrect OTP. Please try again.');
+  }
+        </script>
     </body>
 
 </html>
