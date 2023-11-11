@@ -11,13 +11,18 @@ const session=require("express-session");
 // app.use(express.json());
 const bodyParser = require("body-parser");
 const passport=require("passport");
+require("./utilities/passport-setup");
+app.use(passport.initialize());
+// app.use(passport.session());
 require("dotenv").config();
 const ejs = require("ejs");
 const User=require("./models/User");
+const Guser=require("./models/google_user");
 const bcrypt=require("bcrypt");
 const {getToken}=require("./utilities/help");
 // const authR=require("./routes/auth");
 app.set('view engine', 'ejs');
+// const prof=require("./utilities/passport-setup");
 const nodemailer=require("nodemailer");
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
@@ -241,6 +246,24 @@ app.post("/reset/:token",async(req,res)=>{
         });
         
 }
+});
+app.get("/logout",requireAuthenticate,(req,res)=>{
+  req.session.destroy((err)=>{
+    if (err) {
+      return res.status(500).send('Internal Server Error');
+    }
+    res.redirect("/");
+  })
+});
+app.get("/failure",(req,res)=>{
+  res.send("Failed to log in");
+});
+app.get("/google",passport.authenticate("google",{scope:["profile","email"]}));
+app.get("/google/callback",passport.authenticate("google",{failureRedirect: "/failure"}),(req,res)=>{
+  // console.log(prof);
+  const tok=crypto.randomBytes(20).toString('hex');
+  req.session.userId=tok;
+  res.redirect("/profile_pg");
 });
 app.listen(3000,()=>{
     console.log("Server started on port 3000");
