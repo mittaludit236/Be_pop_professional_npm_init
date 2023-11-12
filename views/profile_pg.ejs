@@ -55,6 +55,19 @@
 .custom-role {
     color: #888888;
 }
+.search-input{
+    outline: none;
+    border: 1px solid grey;
+    border-radius: 5px;
+    margin-top: 1.3rem;
+}
+.search-result{
+    background-color: #434242;
+    color: white;
+    border-radius: 10px;
+    margin-top:.5rem;
+}
+
 
         </style>
     </head>
@@ -93,14 +106,18 @@
               
                 <div id="navigation">
                     <!-- Navigation Menu-->   
+                    <form action="/search" method="post">
                     <ul class="navigation-menu">
                         <li class="has-submenu parent-menu-item" data-toggle="modal" data-target="#myModal">
                           <a href="#" >Community</a>
                         </li>
                         <li><a href="applyforjob.html" class="sub-menu-item">Apply for Job </a></li>
-                        
-                      
+                        <li>
+                            <input type="text" class="search-input" id="searchInput" placeholder="&nbsp; Search Profile" oninput="handleSearchChange()">
+                            <ul id="searchResults" class="search-result"></ul>
+                        </li>
                     </ul>
+                    </form>
                 </div>
             </div>
         </nav>
@@ -399,6 +416,32 @@
         <script src="assets/libs/feather-icons/feather.min.js"></script>
         <script src="assets/js/plugins.init.js"></script>
         <script src="assets/js/app.js"></script>
+        <script>
+            function handleSearchChange() {
+                var searchInput = document.getElementById("searchInput");
+                var searchResults = document.getElementById("searchResults");
+    
+                var searchTerm = searchInput.value;
+    
+                // Make an AJAX request to send the form data
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "/search", true);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        var results = JSON.parse(xhr.responseText);
+    
+                        // Update the search results on the frontend
+                        if(results.length>0){
+                        searchResults.innerHTML = results.map(result => `<div><li>${result.Name}</li><hr/> </div>`).join('');
+                    }}
+                    if (searchResults.textContent.trim()!== ''){
+                      searchResults.style.padding = '10px';
+    }
+                };
+                xhr.send("find_prof=" + searchTerm);
+            }
+        </script>
         <!-- JAVASCRIPTS -->
     </body>
 

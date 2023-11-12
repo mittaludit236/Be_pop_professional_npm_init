@@ -250,20 +250,22 @@ app.post("/reset/:token",async(req,res)=>{
 }
 });
 
-app.post("/search",(req,res)=>{
-  const find_prof=req.body.find_prof;
-  if(find_prof==''){
-    res.send([])
-  }else{
-  const client=new Client(dbConfig);
-  client.connect().then(()=>{
-    const query = {text:'SELECT * FROM profiles WHERE name ILIKE $1 ;', values:['%' + find_prof + '%']};
-    return client.query(query);
-  }).catch((err)=>console.log(err))
-  .then((data)=>{
-    res.send(data.rows);
-  })}
-})
+app.post("/search",async(req,res)=>{
+  const find_prof = req.body.find_prof;
+
+  try {
+    if (find_prof === '') {
+      res.send([]);
+    } else {
+      // Using regular expression for case-insensitive search
+      const profiles = await Profile.find({ name: { $regex: new RegExp(find_prof, 'i') } });
+      res.send(profiles);
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  }
+});
 app.listen(3000,()=>{
     console.log("Server started on port 3000");
 });
