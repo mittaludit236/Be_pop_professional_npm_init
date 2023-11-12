@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en" class="light scroll-smooth" dir="ltr">
+ 
+<head>
+        <meta charset="UTF-8">
+        <title>PROFILE SETTINGS</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+        <meta name="version" content="1.3.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <!-- favicon -->
+        <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+        <!-- Css -->
+        <!-- Main Css -->
+        <link href="assets/libs/%40iconscout/unicons/css/line.css" type="text/css" rel="stylesheet">
+        <link href="assets/libs/%40mdi/font/css/materialdesignicons.min.css" rel="stylesheet" type="text/css">
+        <link href="assets/css/tailwind.min.css" rel="stylesheet" type="text/css">
+
+    </head>
+    
+    <body class="dark:bg-slate-900">
+
+        <!-- Start Navbar -->
+        <nav id="topnav" class="defaultscroll is-sticky">
+            <div class="container">
+           
+                <div class="menu-extras">
+                    <div class="menu-item">
+                        <a class="navbar-toggle" id="isToggle" onclick="toggleMenu()">
+                            <div class="lines">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+             
+            
+                <ul class="buy-button list-none mb-0">
+                          
+
+                    <li class="dropdown inline-block relative ps-1">
+                        <button data-dropdown-toggle="dropdown" class="dropdown-toggle items-center" type="button">
+                            <span class="btn btn-icon rounded-full bg-emerald-600 hover:bg-emerald-700 border-emerald-600 hover:border-emerald-700 text-white"><img src="assets/images/team/01.jpg" class="rounded-full" alt=""></span>
+                        </button>
+                        <!-- Dropdown menu -->
+                        <div class="dropdown-menu absolute end-0 m-0 mt-4 z-10 w-44 rounded-md overflow-hidden bg-white dark:bg-slate-900 shadow dark:shadow-gray-700 hidden" onclick="event.stopPropagation();">
+                            <ul class="py-2 text-start">
+                              
+                                <li>
+                                    <a href="login.html" class="flex items-center font-medium py-2 px-4 dark:text-white/70 hover:text-emerald-600 dark:hover:text-white"><i data-feather="log-out" class="h-4 w-4 me-2"></i>Logout</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li><!--end dropdown-->
+                </ul>
+                <!--Login button End-->
+
+                
+            </div><!--end container-->
+        </nav><!--end header-->
+        <!-- End Navbar -->
+
+        <section class="relative lg:mt-24 mt-[74px] pb-16">
+            <div class="lg:container container-fluid">
+                <div class="profile-banner relative text-transparent">
+                    <input id="pro-banner" name="profile-banner" type="file" class="hidden" onchange="loadFile(event)" />
+                    <div class="relative shrink-0">
+                        <img src="assets/images/hero/bg5.jpg" class="h-64 w-full object-cover lg:rounded-xl shadow dark:shadow-gray-700" id="profile-banner" alt="">
+                        <label class="absolute inset-0 cursor-pointer" for="pro-banner"></label>
+                    </div>
+                </div>
+            
+
+                <div class="md:flex mx-4 -mt-12">
+                    <div class="md:w-full">
+                        <div class="relative flex items-end">
+                            <div class="profile-pic text-center">
+                                <input id="pro-img" name="profile-image" type="file" class="hidden" onchange="loadFile(event)" />
+                                <div>
+                                    <div class="relative h-28 w-28 max-w-[112px] max-h-[112px] mx-auto">
+                                        <img src="assets/images/team/01.jpg" class="rounded-full shadow dark:shadow-gray-800 ring-4 ring-slate-50 dark:ring-slate-800" id="profile-image" alt="">
+                                        <label class="absolute inset-0 cursor-pointer" for="pro-img"></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ms-4">
+                                <h5 class="text-lg font-semibold">Mr. Rahul Sharma</h5>
+                                <p class="text-slate-400">Web Designer</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!--end -->
+
+            <div class="container mt-16">
+                <div class="grid grid-cols-1 gap-[30px]">
+                    <div class="p-6 rounded-md shadow dark:shadow-gray-800 bg-white dark:bg-slate-900">
+                        <h5 class="text-lg font-semibold mb-4">Personal Detail :</h5>
+                        <form>
+                            <div class="grid lg:grid-cols-2 grid-cols-1 gap-4">
+                                <div>
+                                    <label class="form-label font-medium">First Name : <span class="text-red-600">*</span></label>
+                                    <input type="text" class="form-input border border-slate-100 dark:border-slate-800 mt-2" placeholder="First Name:" id="firstname" name="name" required="">
+                                </div>
+                                <div>
+                                    <label class="form-label font-medium">Last Name : <span class="text-red-600">*</span></label>
+                                    <input type="text" class="form-input border border-slate-100 dark:border-slate-800 mt-2" placeholder="Last Name:" id="lastname" name="name" required="">
+                                </div>
+                                <div>
+                                    <label class="form-label font-medium">Your Email : <span class="text-red-600">*</span></label>
+                                    <input type="email" class="form-input border border-slate-100 dark:border-slate-800 mt-2" placeholder="Email" name="email" required="">
+                                </div>
+                                <div>
+                                    <label class="form-label font-medium">Occupation :</label>
+                                    <select class="form-select form-input border border-slate-100 dark:border-slate-800 block w-full mt-2">
+                                        <option value="WD">Web Designer</option>
+                                        <option value="WD">Web Developer</option>
+                                        <option value="UI">UI / UX Desinger</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="form-label font-medium">Location :</label>
+                                    <select class="form-select form-input border border-slate-100 dark:border-slate-800 block w-full mt-2">
+                                        <option value="NY">New York</option>
+                                        <option value="MC">North Carolina</option>
+                                        <option value="SC">South Carolina</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="form-label font-medium" for="multiple_files">Upload Resume:</label>
+                                    <input class="relative form-input border border-slate-100 dark:border-slate-800 file:h-10 file:-mx-3 file:-my-2 file:cursor-pointer file:rounded-none file:border-0 file:px-3 file:text-neutral-700 bg-clip-padding px-3 py-1.5 file:me-3 mt-2" id="multiple_files" type="file" multiple>
+                                </div>
+                            </div><!--end grid-->
+
+                            <div class="grid grid-cols-1">
+                                <div class="mt-3">
+                                    <label class="form-label font-medium">Intro : </label>
+                                    <textarea name="comments" id="comments" class="form-input border border-slate-100 dark:border-slate-800 mt-2 textarea" placeholder="Intro :"></textarea>
+                                </div>
+                            </div><!--end row-->
+                            
+                            <div>
+                                <label class="form-label font-medium">Skiils :</label>
+                                <select class="form-select form-input border border-slate-100 dark:border-slate-800 block w-full mt-2">
+                                    <option value="Wd">Web Dev</option>
+                                    <option value="C">C++</option>
+                                    <option value="JS">Javascript</option>
+                                </select>
+                            </div>
+                    </div>
+
+                    <div class="p-6 rounded-md shadow dark:shadow-gray-800 bg-white dark:bg-slate-900">
+                        <div class="grid lg:grid-cols-2 grid-cols-1 gap-4">
+                            <div>
+                                <h5 class="text-lg font-semibold mb-4">Contact Info :</h5>
+
+                                <form>
+                                    <div class="grid grid-cols-1 gap-4">
+                                        <div>
+                                            <label class="form-label font-medium">Phone No. :</label>
+                                            <input name="number" id="number" type="number" class="form-input border border-slate-100 dark:border-slate-800 mt-2" placeholder="Phone :">
+                                        </div>
+
+                                        <div>
+                                            <label class="form-label font-medium">Website :</label>
+                                            <input name="url" id="url" type="url" class="form-input border border-slate-100 dark:border-slate-800 mt-2" placeholder="Url :">
+                                        </div>
+                                    </div><!--end grid-->
+
+                                    <button class="btn bg-emerald-600 hover:bg-emerald-700 text-white rounded-md mt-5">Add</button>
+                                </form>
+                            </div><!--end col-->
+                            
+                            <div> 
+                                <h5 class="text-lg font-semibold mb-4">Change password :</h5>
+                                <form>
+                                    <div class="grid grid-cols-1 gap-4">
+                                        <div>
+                                            <label class="form-label font-medium">Old password :</label>
+                                            <input type="password" class="form-input border border-slate-100 dark:border-slate-800 mt-2" placeholder="Old password" required="">
+                                        </div>
+
+                                        <div>
+                                            <label class="form-label font-medium">New password :</label>
+                                            <input type="password" class="form-input border border-slate-100 dark:border-slate-800 mt-2" placeholder="New password" required="">
+                                        </div>
+
+                                        <div>
+                                            <label class="form-label font-medium">Re-type New password :</label>
+                                            <input type="password" class="form-input border border-slate-100 dark:border-slate-800 mt-2" placeholder="Re-type New password" required="">
+                                        </div>
+                                    </div><!--end grid-->
+
+                                    <button class="btn bg-emerald-600 hover:bg-emerald-700 text-white rounded-md mt-5">Save password</button>
+                                </form>
+                            </div><!--end col-->
+                        </div><!--end row-->
+                    </div>
+
+                    <div class="p-6 rounded-md shadow dark:shadow-gray-800 bg-white dark:bg-slate-900">
+                        <h5 class="text-lg font-semibold mb-4">Social Media :</h5>
+
+                        <div class="md:flex">
+                            <div class="md:w-1/3">
+                                <span class="font-medium">Twitter</span>
+                            </div>
+
+                            <div class="md:w-2/3 mt-4 md:mt-0">
+                                <form>
+                                    <div class="form-icon relative">
+                             
+                                        <input type="text" class="form-input border border-slate-100 dark:border-slate-800 mt-2 ps-12" placeholder="Twitter Profile Name" id="twitter_name" name="name" required="">
+                                    </div>
+                                </form>
+
+                                <p class="text-slate-400 mt-1">Add your Twitter username (e.g. jennyhot).</p>
+                            </div>
+                        </div>
+                        
+                        <div class="md:flex mt-8">
+                            <div class="md:w-1/3">
+                                <span class="font-medium">Facebook</span>
+                            </div>
+
+                            <div class="md:w-2/3 mt-4 md:mt-0">
+                                <form>
+                                    <div class="form-icon relative">
+                                       
+                                        <input type="text" class="form-input border border-slate-100 dark:border-slate-800 mt-2 ps-12" placeholder="Facebook Profile Name" id="facebook_name" name="name" required="">
+                                    </div>
+                                </form>
+
+                                <p class="text-slate-400 mt-1">Add your Facebook username (e.g. jennyhot).</p>
+                            </div>
+                        </div>
+                        
+                        <div class="md:flex mt-8">
+                            <div class="md:w-1/3">
+                                <span class="font-medium">Instagram</span>
+                            </div>
+
+                            <div class="md:w-2/3 mt-4 md:mt-0">
+                                <form>
+                                    <div class="form-icon relative">
+                                      
+                                        <input type="text" class="form-input border border-slate-100 dark:border-slate-800 mt-2 ps-12" placeholder="Instagram Profile Name" id="insta_name" name="name" required="">
+                                    </div>
+                                </form>
+
+                                <p class="text-slate-400 mt-1">Add your Instagram username (e.g. jennyhot).</p>
+                            </div>
+                        </div>
+                        
+                      
+                        
+                        <div class="md:flex mt-8">
+                            <div class="md:w-1/3">
+                                <span class="font-medium">Youtube</span>
+                            </div>
+
+                            <div class="md:w-2/3 mt-4 md:mt-0">
+                                <form>
+                                    <div class="form-icon relative">
+                                      
+                                        <input type="url" class="form-input border border-slate-100 dark:border-slate-800 mt-2 ps-12" placeholder="Youtube url" id="you_url" name="url" required="">
+                                    </div>
+                                </form>
+
+                                <p class="text-slate-400 mt-1">Add your Youtube url.</p>
+                            </div>
+                        </div>
+
+                        <div class="md:flex">
+                            <div class="md:w-1/3">
+                                <input type="submit" id="submit" name="send" class="btn bg-emerald-600 hover:bg-emerald-700 text-white rounded-md mt-5" value="Save Changes">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-6 rounded-md shadow dark:shadow-gray-800 bg-white dark:bg-slate-900">
+                        <h5 class="text-lg font-semibold mb-5">Account Notifications :</h5>
+
+                        <div class="flex justify-between pb-4">
+                            <h6 class="mb-0 font-medium">When someone mentions me</h6>
+                            <div class="">
+                                <input class="form-checkbox rounded border-gray-200 dark:border-gray-800 text-emerald-600 focus:border-emerald-300 focus:ring focus:ring-offset-0 focus:ring-emerald-200 focus:ring-opacity-50" type="checkbox" value="" id="noti1">
+                                <label class="form-check-label" for="noti1"></label>
+                            </div>
+                        </div>
+                        <div class="flex justify-between py-4 border-t border-gray-100 dark:border-gray-700">
+                            <h6 class="mb-0 font-medium">When someone follows me</h6>
+                            <div class="">
+                                <input class="form-checkbox rounded border-gray-200 dark:border-gray-800 text-emerald-600 focus:border-emerald-300 focus:ring focus:ring-offset-0 focus:ring-emerald-200 focus:ring-opacity-50" type="checkbox" value="" checked id="noti2">
+                                <label class="form-check-label" for="noti2"></label>
+                            </div>
+                        </div>
+                        <div class="flex justify-between py-4 border-t border-gray-100 dark:border-gray-700">
+                            <h6 class="mb-0 font-medium">When shares my activity</h6>
+                            <div class="">
+                                <input class="form-checkbox rounded border-gray-200 dark:border-gray-800 text-emerald-600 focus:border-emerald-300 focus:ring focus:ring-offset-0 focus:ring-emerald-200 focus:ring-opacity-50" type="checkbox" value="" id="noti3">
+                                <label class="form-check-label" for="noti3"></label>
+                            </div>
+                        </div>
+                        <div class="flex justify-between py-4 border-t border-gray-100 dark:border-gray-700">
+                            <h6 class="mb-0 font-medium">When someone messages me</h6>
+                            <div class="">
+                                <input class="form-checkbox rounded border-gray-200 dark:border-gray-800 text-emerald-600 focus:border-emerald-300 focus:ring focus:ring-offset-0 focus:ring-emerald-200 focus:ring-opacity-50" type="checkbox" value="" id="noti4">
+                                <label class="form-check-label" for="noti4"></label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <!-- End Hero -->
+        
+        
+
+        <!-- Start Footer -->
+        <footer class="relative bg-slate-900 dark:bg-slate-800">
+            <div class="container">
+                <div class="grid grid-cols-1">
+                    <div class="relative py-12">
+                        <!-- Subscribe -->
+                        <div class="relative w-full">
+                            <div class="grid md:grid-cols-12 grid-cols-1 gap-[30px]">
+                                <div class="md:col-span-3">
+                                  
+                                </div><!--end col-->
+                        
+                                <div class="md:col-span-9">
+                                    <ul class="list-disc footer-list ltr:md:text-right rtl:md:text-left text-center space-x-3">
+                                        <li class="inline-block"><a href="index.html" class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out font-medium">Home</a></li>
+                                        <li class="inline-block mt-[10px] md:mt-0"><a href="services.html" class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out font-medium">How it works</a></li>
+                                        <li class="inline-block mt-[10px] md:mt-0"><a href="#" class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out font-medium">Create a job</a></li>
+                                        <li class="inline-block mt-[10px] md:mt-0"><a href="aboutus.html" class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out font-medium">About us</a></li>
+                                        <li class="inline-block mt-[10px] md:mt-0"><a href="contact.html" class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out font-medium">Contact us</a></li>
+                                    </ul><!--end icon-->
+                                </div><!--end col-->
+                            </div><!--end grid-->
+                        </div>
+                        <!-- Subscribe -->
+                    </div>
+                </div>
+            </div>
+
+       
+            <div class="py-[30px] px-0 border-t border-gray-800 dark:border-gray-700">
+                <div class="container text-center">
+                    <div class="grid md:grid-cols-2 items-center gap-6">
+                        <div class="ltr:md:text-left rtl:md:text-right text-center">
+                            <p class="mb-0 text-gray-300 font-medium">Design By TEAM NPM INIT<i class="mdi mdi-heart text-red-600"></i></p>
+                        </div>
+
+                        <ul class="list-none ltr:md:text-right rtl:md:text-left text-center space-x-0.5">
+                            <li class="inline"><a href="#" target="_blank" class="btn btn-icon btn-sm border-2 border-gray-800 dark:border-gray-700 rounded-md hover:border-emerald-600 dark:hover:border-emerald-600 hover:bg-emerald-600 dark:hover:bg-emerald-600 text-white"><i class="uil uil-dribbble align-middle" title="dribbble"></i></a></li>
+                            <li class="inline"><a href="#" target="_blank" class="btn btn-icon btn-sm border-2 border-gray-800 dark:border-gray-700 rounded-md hover:border-emerald-600 dark:hover:border-emerald-600 hover:bg-emerald-600 dark:hover:bg-emerald-600 text-white"><i class="uil uil-behance" title="Behance"></i></a></li>
+                            <li class="inline"><a href="#" target="_blank" class="btn btn-icon btn-sm border-2 border-gray-800 dark:border-gray-700 rounded-md hover:border-emerald-600 dark:hover:border-emerald-600 hover:bg-emerald-600 dark:hover:bg-emerald-600 text-white"><i class="uil uil-linkedin" title="Linkedin"></i></a></li>
+                            <li class="inline"><a href="#" target="_blank" class="btn btn-icon btn-sm border-2 border-gray-800 dark:border-gray-700 rounded-md hover:border-emerald-600 dark:hover:border-emerald-600 hover:bg-emerald-600 dark:hover:bg-emerald-600 text-white"><i class="uil uil-instagram align-middle" title="instagram"></i></a></li>
+                            <li class="inline"><a href="#" target="_blank" class="btn btn-icon btn-sm border-2 border-gray-800 dark:border-gray-700 rounded-md hover:border-emerald-600 dark:hover:border-emerald-600 hover:bg-emerald-600 dark:hover:bg-emerald-600 text-white"><i class="uil uil-twitter align-middle" title="twitter"></i></a></li>
+
+                        </ul><!--end icon-->
+                    </div><!--end grid-->
+                </div><!--end container-->
+            </div>
+        </footer>
+     
+
+        <!-- End Footer -->
+        <!-- Switcher -->
+        <div class="fixed top-1/4 -left-2 z-50">
+            <span class="relative inline-block rotate-90">
+                <input type="checkbox" class="checkbox opacity-0 absolute" id="chk">
+                <label class="label bg-slate-900 dark:bg-white shadow dark:shadow-gray-800 cursor-pointer rounded-full flex justify-between items-center p-1 w-14 h-8" for="chk">
+                    <i class="uil uil-moon text-[20px] text-yellow-500"></i>
+                    <i class="uil uil-sun text-[20px] text-yellow-500"></i>
+                    <span class="ball bg-white dark:bg-slate-900 rounded-full absolute top-[2px] left-[2px] w-7 h-7"></span>
+                </label>
+            </span>
+        </div>
+
+
+
+        <a href="#" onclick="topFunction()" id="back-to-top" class="back-to-top fixed hidden text-lg rounded-full z-10 bottom-5 end-5 h-9 w-9 text-center bg-emerald-600 text-white justify-center items-center"><i class="uil uil-arrow-up"></i></a>
+        <!-- Back to top -->
+
+
+        <script src="all.js"></script>
+        <!-- JAVASCRIPTS -->
+    </body>
+
+</html>
