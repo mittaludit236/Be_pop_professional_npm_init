@@ -265,6 +265,29 @@ app.get("/google/callback",passport.authenticate("google",{failureRedirect: "/fa
   req.session.userId=tok;
   res.redirect("/profile_pg");
 });
+app.post("/search",async(req,res)=>{
+  const find_prof = req.body.find_prof;
+  console.log(find_prof);
+  try {
+    if (find_prof === '') {
+      res.send([]);
+    } else {
+      // Using regular expression for case-insensitive search
+      const profiles = await User.find({ Name: { $regex: new RegExp(find_prof, 'i') } });
+      console.log("hello");
+      const pr=await Guser.find({ Name: { $regex: new RegExp(find_prof, 'i') } });
+      console.log(pr);
+      console.log(profiles);
+      if(profiles.length==0)
+      res.send(pr);
+      else
+      res.send(profiles);
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  }
+});
 app.listen(3000,()=>{
     console.log("Server started on port 3000");
 });
