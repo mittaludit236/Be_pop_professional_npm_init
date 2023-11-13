@@ -31,7 +31,7 @@ app.use(session({
   cookie: {
     maxAge: 3600000 // 1 hour in milliseconds
   }
-})); //making a session for sign in through express-session
+})); 
 const transporter = nodemailer.createTransport({
   host: 'smtp.gmail.com',
   port: 587,
