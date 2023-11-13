@@ -288,6 +288,9 @@ app.post("/search",async(req,res)=>{
     res.status(500).send('Internal Server Error');
   }
 });
+app.get("/set",requireAuthenticate,(req,res)=>{
+  res.render("candidate-profile");
+});
 app.listen(3000,()=>{
     console.log("Server started on port 3000");
 });
