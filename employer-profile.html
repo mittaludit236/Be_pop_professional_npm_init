@@ -12,9 +12,10 @@
         <link rel="shortcut icon" href="assets/images/favicon.ico">
 
 
-        <link href="assets/libs/%40iconscout/unicons/css/line.css" type="text/css" rel="stylesheet">
-        <link href="assets/libs/%40mdi/font/css/materialdesignicons.min.css" rel="stylesheet" type="text/css">
+
+        <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
         <link href="assets/css/tailwind.min.css" rel="stylesheet" type="text/css">
+
         <style>
             .custom-card {
     display: flex;
@@ -77,7 +78,7 @@
                             <ul class="py-2 text-start">
                              
                                 <li>
-                                    <a href="/set" class="flex items-center font-medium py-2 px-4 dark:text-white/70 hover:text-emerald-600 dark:hover:text-white"><i data-feather="settings" class="h-4 w-4 me-2"></i>Settings</a>
+                                    <a href="candidate-profile-setting.html" class="flex items-center font-medium py-2 px-4 dark:text-white/70 hover:text-emerald-600 dark:hover:text-white"><i data-feather="settings" class="h-4 w-4 me-2"></i>Profile Settings</a>
                                 </li>
                                 <li class="border-t border-gray-100 dark:border-gray-800 my-2"></li>
                              
@@ -132,6 +133,11 @@
                         <h5 class="text-xl font-semibold">Rahul Sharma</h5>
                         <p class="text-slate-400 mt-4">Obviously I'M Web Developer. Web Developer with over 3 years of experience. Experienced with all stages of the development cycle for dynamic web projects. The as opposed to using 'Content here, content here', making it look like readable English.</p>
                         <p class="text-slate-400 mt-4">Data Structures and Algorithms are the heart of programming. Initially most of the developers do not realize its importance but when you will start your career in software development, you will find your code is either taking too much time or taking too much space.</p>
+                        
+                          <!-- Buttons section -->
+                        <br>
+                        <a href="#" class="btn bg-emerald-600 hover:bg-emerald-700 border-emerald-600 dark:border-emerald-600 text-white rounded-md" download><i class="uil uil-user-plus"></i> Connect</a>
+                        <a href="#" class="btn bg-emerald-600 hover:bg-emerald-700 border-emerald-600 dark:border-emerald-600 text-white rounded-md" download> <i class="uil uil-message"></i>Message</a>
                         
                         <h4 class="mt-6 text-xl font-semibold">Skills :</h4>
                         <div class="grid lg:grid-cols-2 grid-cols-1 mt-6 gap-6">
@@ -221,6 +227,23 @@
                                 <p class="text-slate-400 mt-2 mb-0">It seems that only fragments of the original text remain in the Lorem Ipsum texts used today. One may speculate that over the course of time certain letters were added or deleted at various positions within the text. </p>
                             </div>
                         </div>
+                        <h4 class="mt-6 text-xl font-semibold">Education :</h4>
+
+<div class="flex mt-6">
+    <div class="text-slate-400 font-semibold min-w-[80px] text-center">
+        <img src="assets/images/school-college-logo.png" class="h-16 w-16 mx-auto mb-2 block" alt=""> 2015-2019
+    </div>
+
+    <div class="ms-4">
+        <h5 class="text-lg font-medium mb-0">Bachelor's in Computer Science</h5>
+        <span class="text-slate-400 company-university">XYZ College/University</span>
+        <p class="text-slate-400 mt-2 mb-0">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+    </div> 
+
+
+    
+</div>
+
 
                         <div class="rounded-md shadow dark:shadow-gray-700 p-6 mt-6">
                             <h5 class="text-xl font-semibold">Contact Me:</h5>
@@ -314,7 +337,8 @@
                                         <span class="font-medium ms-2">resume.pdf</span>
                                     </div>
 
-                                    <a href="assets/images/calvin-carlo-resume.pdf" class="btn bg-emerald-600 hover:bg-emerald-700 border-emerald-600 dark:border-emerald-600 text-white rounded-md w-full" download><i class="uil uil-file-download-alt"></i> Download CV</a>
+                                    <a href="assets/images/calvin-carlo-resume.pdf" class="btn bg-emerald-600 hover:bg-emerald-700 border-emerald-600 dark:border-emerald-600 text-white rounded-md w-full" download> <i class="uil uil-file uil-download-alt"></i>
+                                        Download CV</a>
                                 </li>
                             </ul>
                         </div>
@@ -328,11 +352,11 @@
                           
             
                             <div class="absolute -top-5 -start-5">
-                                <div class="uil uil-envelope lg:text-[150px] text-7xl text-black/5 dark:text-white/5 ltr:-rotate-45 rtl:rotate-45"></div>
+                                <div class="uil uil-envelope lg:text-[150px] text-7xl text-black/5 dark:text-white/5 ltr:-rotate-45 "></div>
                             </div>
             
                             <div class="absolute -bottom-5 -end-5">
-                                <div class="uil uil-pen lg:text-[150px] text-7xl text-black/5 dark:text-white/5 rtl:-rotate-90"></div>
+                                <div class="uil uil-pen lg:text-[150px] text-7xl text-black/5 dark:text-white/5 "></div>
                             </div>
                         </div>
                     </div><!--end grid-->
@@ -392,12 +416,21 @@
         </footer>
      
 
-
+        <div class="fixed top-1/4 -left-2 z-50">
+            <span class="relative inline-block rotate-90">
+                <input type="checkbox" class="checkbox opacity-0 absolute" id="chk">
+                <label class="label bg-slate-900 dark:bg-white shadow dark:shadow-gray-800 cursor-pointer rounded-full flex justify-between items-center p-1 w-14 h-8" for="chk">
+                    <i class="uil uil-moon text-[20px] text-yellow-500"></i>
+                    <i class="uil uil-sun text-[20px] text-yellow-500"></i>
+                    <span class="ball bg-white dark:bg-slate-900 rounded-full absolute top-[2px] left-[2px] w-7 h-7"></span>
+                </label>
+            </span>
+        </div>
         <a href="#" onclick="topFunction()" id="back-to-top" class="back-to-top fixed hidden text-lg rounded-full z-10 bottom-5 end-5 h-9 w-9 text-center bg-emerald-600 text-white justify-center items-center"><i class="uil uil-arrow-up"></i></a>
 
-        <script src="assets/libs/feather-icons/feather.min.js"></script>
-        <script src="assets/js/plugins.init.js"></script>
-        <script src="assets/js/app.js"></script>
+
+
+        <script src="all.js"></script>
         <!-- JAVASCRIPTS -->
     </body>
 

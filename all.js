@@ -133,3 +133,12 @@ document.querySelectorAll(".dropdown").forEach(function (item) {
           window.location.href = 'signup.html'; 
       }, 10000);
   }
+
+  document.addEventListener('DOMContentLoaded', function () {
+
+    var addButton = document.getElementById('adding');
+    addButton.addEventListener('click', function () {
+
+        window.location.href = 'candidate-profile-setting.html';
+    });
+});
