@@ -8,13 +8,12 @@
         <meta name="version" content="1.3.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-
+        <link rel="stylesheet" href="path/to/iconmoon/style.css">
         <link rel="shortcut icon" href="assets/images/favicon.ico">
-
-
-
         <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
         <link href="assets/css/tailwind.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+        
 
         <style>
             .custom-card {
@@ -56,19 +55,44 @@
     color: #888888;
 }
 
+
+
+.notification .notification-count {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    padding: 5px 10px;
+    border-radius: 50%;
+    background-color: pink;
+    color: white;
+}
+
+#connectButton.connected {
+    background-color: white;
+    color: black;
+}
+#connectButton.connected:hover {
+    background-color: white;
+    color: black;
+}
         </style>
     </head>
     
     <body class="dark:bg-slate-900">
        
-        <nav id="topnav" class="defaultscroll is-sticky">
-            <div class="container">
-        
+        <nav id="topnav">
+            <div class="container" class="defaultscroll is-sticky">
                 <ul class="buy-button list-none mb-0">
-                    <li class="inline-block mb-0">
-                      
-                    </li>            
-
+                    <li class="dropdown2 inline-block relative ps-1">
+                        <button data-dropdown-toggle="dropdown2" class="dropdown-toggle2 items-center notification" type="button" id="bellDropdownButton" style="padding: 10px 15px; display: inline-block; ">
+                            <span class="btn btn-icon rounded-full bg-emerald-600 hover:bg-emerald-700 border-emerald-600 hover:border-emerald-700 text-white">
+                                <i class="uil uil-bell"></i>
+                                <span id="notificationCount" class="notification-count">0</span>
+                            </span>
+                        </button>
+                       
+                    </li>
+                    
                     <li class="dropdown inline-block relative ps-1">
                         <button data-dropdown-toggle="dropdown" class="dropdown-toggle items-center" type="button">
                             <span class="btn btn-icon rounded-full bg-emerald-600 hover:bg-emerald-700 border-emerald-600 hover:border-emerald-700 text-white"><img src="assets/images/team/01.jpg" class="rounded-full" alt=""></span>
@@ -94,10 +118,10 @@
                 <div id="navigation">
                     <!-- Navigation Menu-->   
                     <ul class="navigation-menu">
-                        <li class="has-submenu parent-menu-item" data-toggle="modal" data-target="#myModal">
-                          <a href="#" >Community</a>
+                        <li>
+                          <a href="community.html" >Community</a>
                         </li>
-                        <li><a href="applyforjob.html" class="sub-menu-item">Apply for Job </a></li>
+                        <li><a href="applyforjob.html" >Apply for Job </a></li>
                         
                       
                     </ul>
@@ -136,8 +160,11 @@
                         
                           <!-- Buttons section -->
                         <br>
-                        <a href="#" class="btn bg-emerald-600 hover:bg-emerald-700 border-emerald-600 dark:border-emerald-600 text-white rounded-md" download><i class="uil uil-user-plus"></i> Connect</a>
-                        <a href="#" class="btn bg-emerald-600 hover:bg-emerald-700 border-emerald-600 dark:border-emerald-600 text-white rounded-md" download> <i class="uil uil-message"></i>Message</a>
+                        <button id="connectButton" class="btn bg-emerald-600 hover:bg-emerald-700 border-emerald-600 dark:border-emerald-600 text-white rounded-md">
+                            <i class="uil uil-user-plus"></i> Connect
+                        </button>
+                        
+                        <button type="button" class="btn bg-emerald-600 hover:bg-emerald-700 border-emerald-600 dark:border-emerald-600 text-white rounded-md"> <i class="uil uil-message"></i>Message</button>
                         
                         <h4 class="mt-6 text-xl font-semibold">Skills :</h4>
                         <div class="grid lg:grid-cols-2 grid-cols-1 mt-6 gap-6">
@@ -231,7 +258,7 @@
 
 <div class="flex mt-6">
     <div class="text-slate-400 font-semibold min-w-[80px] text-center">
-        <img src="assets/images/school-college-logo.png" class="h-16 w-16 mx-auto mb-2 block" alt=""> 2015-2019
+        <img src="assets\images\company\2.jpg" class="h-16 w-16 mx-auto mb-2 block" alt=""> 2015-2019
     </div>
 
     <div class="ms-4">
@@ -239,42 +266,204 @@
         <span class="text-slate-400 company-university">XYZ College/University</span>
         <p class="text-slate-400 mt-2 mb-0">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
     </div> 
-
-
-    
 </div>
 
+<h2 class="mt-6 text-xl font-semibold">Posts :</h2>
 
-                        <div class="rounded-md shadow dark:shadow-gray-700 p-6 mt-6">
-                            <h5 class="text-xl font-semibold">Contact Me:</h5>
-
-                            <form method="post" name="myForm" id="myForm" class="mt-4" onsubmit="return validateForm()">
-                                <p class="mb-0" id="error-msg"></p>
-                                <div id="simple-msg"></div>
-                                <div class="grid grid-cols-12 gap-2">
-                                    <div class="md:col-span-6 col-span-12">
-                                        <label for="name" class="font-semibold">Your Name:</label>
-                                        <input name="name" id="name" type="text" class="form-input border border-slate-100 dark:border-slate-800 mt-2" placeholder="Name :">
-                                    </div>
+<div class="flex mt-6">
+    <div class="lg:col-span-8 md:col-span-6">
+        <div class="grid grid-cols-1 gap-[30px]">
+    <div class="group rounded-lg shadow-lg hover:shadow-lg dark:shadow-gray-700 transition-all duration-500">
+        <div class="flex items-center justify-between p-6">
+            <div class="flex items-center">
+                <div class="w-14 h-14 flex items-center justify-center bg-white dark:bg-slate-900 shadow dark:shadow-gray-700 rounded-md">
+                    <img src="assets/images/team/01.jpg" class="h-8 w-8" alt="">
+                </div>
     
-                                    <div class="md:col-span-6 col-span-12">
-                                        <label for="email" class="font-semibold">Your Email:</label>
-                                        <input name="email" id="email" type="email" class="form-input border border-slate-100 dark:border-slate-800 mt-2" placeholder="Email :">
-                                    </div>
+                <div class="ms-3">
+                    <a href="employer-profile.html" class="block text-lg font-semibold hover:text-emerald-600 transition-all duration-500">Sujal Pandey</a>
+                    <span class="block text-sm text-slate-400">2 days ago</span>
+                </div>
+            </div>
+            <div class="dropdown inline-block relative ps-1">
+                <button data-dropdown-toggle="dropdown" class="dropdown-toggle items-center" type="button">
+                    <span class="btn btn-icon rounded-full bg-emerald-600 hover:bg-emerald-700 border-emerald-600 hover:border-emerald-700 text-white">
+                        <i class="uil uil-direction"></i>
+                    </span>
+                </button>
+    
+                <div class="dropdown-menu absolute end-0 m-0 mt-4 z-10 w-44 rounded-md overflow-hidden bg-white dark:bg-slate-900 shadow dark:shadow-gray-700 hidden" onclick="event.stopPropagation();">
+                    <ul class="py-2 text-start">
+                        <li>
+                            <a href="#" class="flex items-center font-medium py-2 px-4 dark:text-white/70 hover:text-emerald-600 dark:hover:text-white">
+                                <iconify-icon icon="mdi:edit" style="margin-right: 8px;"></iconify-icon>
+                                Edit Post
+                            </a>
+                        </li>
+                        <li class="border-t border-gray-100 dark:border-gray-800 my-2"></li>
+                        <li>
+                            <a href="#" class="flex items-center font-medium py-2 px-4 dark:text-white/70 hover:text-emerald-600 dark:hover:text-white" data-toggle="modal" data-target="#deletePostModal">
+                                <iconify-icon icon="mdi:delete" style="margin-right: 8px;"></iconify-icon>
+                                Delete Post
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    
+        <div class="lg:flex items-center justify-between border-t border-gray-100 dark:border-gray-800 p-6">
+            <p class="text-slate-400 lg:mt-0 mt-4">
+                Hello, guys! This is my first post. Solving 350 questions on the LeetCode platform has been a great journey for me. XYZXYZCYX xvxvx sdsfsdfsf
+            </p>
+        </div>
+    
 
-                                    <div class="col-span-12">
-                                        <label for="subject" class="font-semibold">Your Question:</label>
-                                        <input name="subject" id="subject" class="form-input border border-slate-100 dark:border-slate-800 mt-2" placeholder="Subject :">
-                                    </div>
+    </div><!--end content-->
+    <div class="group rounded-lg shadow-lg hover:shadow-lg dark:shadow-gray-700 transition-all duration-500">
+        <div class="flex items-center justify-between p-6">
+            <div class="flex items-center">
+                <div class="w-14 h-14 flex items-center justify-center bg-white dark:bg-slate-900 shadow dark:shadow-gray-700 rounded-md">
+                    <img src="assets/images/team/01.jpg" class="h-8 w-8" alt="">
+                </div>
+    
+                <div class="ms-3">
+                    <a href="employer-profile.html" class="block text-lg font-semibold hover:text-emerald-600 transition-all duration-500">Sujal Pandey</a>
+                    <span class="block text-sm text-slate-400">2 days ago</span>
+                </div>
+            </div>
+            <div class="dropdown inline-block relative ps-1">
+                <button data-dropdown-toggle="dropdown" class="dropdown-toggle items-center" type="button">
+                    <span class="btn btn-icon rounded-full bg-emerald-600 hover:bg-emerald-700 border-emerald-600 hover:border-emerald-700 text-white">
+                        <i class="uil uil-direction"></i>
+                    </span>
+                </button>
+    
+                <div class="dropdown-menu absolute end-0 m-0 mt-4 z-10 w-44 rounded-md overflow-hidden bg-white dark:bg-slate-900 shadow dark:shadow-gray-700 hidden" onclick="event.stopPropagation();">
+                    <ul class="py-2 text-start">
+                        <li>
+                            <a href="#" class="flex items-center font-medium py-2 px-4 dark:text-white/70 hover:text-emerald-600 dark:hover:text-white">
+                                <iconify-icon icon="mdi:edit" style="margin-right: 8px;"></iconify-icon>
+                                Edit Post
+                            </a>
+                        </li>
+                        <li class="border-t border-gray-100 dark:border-gray-800 my-2"></li>
+                        <li>
+                            <a href="#" class="flex items-center font-medium py-2 px-4 dark:text-white/70 hover:text-emerald-600 dark:hover:text-white" data-toggle="modal" data-target="#deletePostModal">
+                                <iconify-icon icon="mdi:delete" style="margin-right: 8px;"></iconify-icon>
+                                Delete Post
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    
+        <div class="lg:flex items-center justify-between border-t border-gray-100 dark:border-gray-800 p-6">
+            <p class="text-slate-400 lg:mt-0 mt-4">
+                Hello, guys! This is my first post. Solving 350 questions on the LeetCode platform has been a great journey for me. XYZXYZCYX xvxvx sdsfsdfsf
+            </p>
+        </div>
 
-                                    <div class="col-span-12">
-                                        <label for="comments" class="font-semibold">Your Comment:</label>
-                                        <textarea name="comments" id="comments" class="form-input border border-slate-100 dark:border-slate-800 mt-2 textarea" placeholder="Message :"></textarea>
-                                    </div>
-                                </div>
-                                <button type="submit" id="submit" name="send" class="btn bg-emerald-600 hover:bg-emerald-700 text-white rounded-md">Send Message</button>
-                            </form>
-                        </div>
+    </div><!--end content-->
+    <div class="group rounded-lg shadow-lg hover:shadow-lg dark:shadow-gray-700 transition-all duration-500">
+        <div class="flex items-center justify-between p-6">
+            <div class="flex items-center">
+                <div class="w-14 h-14 flex items-center justify-center bg-white dark:bg-slate-900 shadow dark:shadow-gray-700 rounded-md">
+                    <img src="assets/images/team/01.jpg" class="h-8 w-8" alt="">
+                </div>
+    
+                <div class="ms-3">
+                    <a href="employer-profile.html" class="block text-lg font-semibold hover:text-emerald-600 transition-all duration-500">Sujal Pandey</a>
+                    <span class="block text-sm text-slate-400">2 days ago</span>
+                </div>
+            </div>
+            <div class="dropdown inline-block relative ps-1">
+                <button data-dropdown-toggle="dropdown" class="dropdown-toggle items-center" type="button">
+                    <span class="btn btn-icon rounded-full bg-emerald-600 hover:bg-emerald-700 border-emerald-600 hover:border-emerald-700 text-white">
+                        <i class="uil uil-direction"></i>
+                    </span>
+                </button>
+    
+                <div class="dropdown-menu absolute end-0 m-0 mt-4 z-10 w-44 rounded-md overflow-hidden bg-white dark:bg-slate-900 shadow dark:shadow-gray-700 hidden" onclick="event.stopPropagation();">
+                    <ul class="py-2 text-start">
+                        <li>
+                            <a href="#" class="flex items-center font-medium py-2 px-4 dark:text-white/70 hover:text-emerald-600 dark:hover:text-white">
+                                <iconify-icon icon="mdi:edit" style="margin-right: 8px;"></iconify-icon>
+                                Edit Post
+                            </a>
+                        </li>
+                        <li class="border-t border-gray-100 dark:border-gray-800 my-2"></li>
+                        <li>
+                            <a href="#" class="flex items-center font-medium py-2 px-4 dark:text-white/70 hover:text-emerald-600 dark:hover:text-white" data-toggle="modal" data-target="#deletePostModal">
+                                <iconify-icon icon="mdi:delete" style="margin-right: 8px;"></iconify-icon>
+                                Delete Post
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    
+        <div class="lg:flex items-center justify-between border-t border-gray-100 dark:border-gray-800 p-6">
+            <p class="text-slate-400 lg:mt-0 mt-4">
+                Hello, guys! This is my first post. Solving 350 questions on the LeetCode platform has been a great journey for me. XYZXYZCYX xvxvx sdsfsdfsf
+            </p>
+        </div>
+    
+   
+    </div><!--end content-->
+    <div class="group rounded-lg shadow-lg hover:shadow-lg dark:shadow-gray-700 transition-all duration-500">
+        <div class="flex items-center justify-between p-6">
+            <div class="flex items-center">
+                <div class="w-14 h-14 flex items-center justify-center bg-white dark:bg-slate-900 shadow dark:shadow-gray-700 rounded-md">
+                    <img src="assets/images/team/01.jpg" class="h-8 w-8" alt="">
+                </div>
+    
+                <div class="ms-3">
+                    <a href="employer-profile.html" class="block text-lg font-semibold hover:text-emerald-600 transition-all duration-500">Sujal Pandey</a>
+                    <span class="block text-sm text-slate-400">2 days ago</span>
+                </div>
+            </div>
+            <div class="dropdown inline-block relative ps-1">
+                <button data-dropdown-toggle="dropdown" class="dropdown-toggle items-center" type="button">
+                    <span class="btn btn-icon rounded-full bg-emerald-600 hover:bg-emerald-700 border-emerald-600 hover:border-emerald-700 text-white">
+                        <i class="uil uil-direction"></i>
+                    </span>
+                </button>
+    
+                <div class="dropdown-menu absolute end-0 m-0 mt-4 z-10 w-44 rounded-md overflow-hidden bg-white dark:bg-slate-900 shadow dark:shadow-gray-700 hidden" onclick="event.stopPropagation();">
+                    <ul class="py-2 text-start">
+                        <li>
+                            <a href="#" class="flex items-center font-medium py-2 px-4 dark:text-white/70 hover:text-emerald-600 dark:hover:text-white">
+                                <iconify-icon icon="mdi:edit" style="margin-right: 8px;"></iconify-icon>
+                             Edit Post
+                            </a>
+                        </li>
+                        <li class="border-t border-gray-100 dark:border-gray-800 my-2"></li>
+                        <li>
+                            <a href="#" class="flex items-center font-medium py-2 px-4 dark:text-white/70 hover:text-emerald-600 dark:hover:text-white" data-toggle="modal" data-target="#deletePostModal">
+                                <iconify-icon icon="mdi:delete" style="margin-right: 8px;"></iconify-icon>
+                                Delete Post
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    
+        <div class="lg:flex items-center justify-between border-t border-gray-100 dark:border-gray-800 p-6">
+            <p class="text-slate-400 lg:mt-0 mt-4">
+                Hello, guys! This is my first post. Solving 350 questions on the LeetCode platform has been a great journey for me. XYZXYZCYX xvxvx sdsfsdfsf
+            </p>
+        </div>
+    
+       
+    </div><!--end content-->
+    </div>
+</div>
+                       </div>
+
                     </div><!--end col-->
 
                     <div class="lg:col-span-4 md:col-span-5">
@@ -337,7 +526,7 @@
                                         <span class="font-medium ms-2">resume.pdf</span>
                                     </div>
 
-                                    <a href="assets/images/calvin-carlo-resume.pdf" class="btn bg-emerald-600 hover:bg-emerald-700 border-emerald-600 dark:border-emerald-600 text-white rounded-md w-full" download> <i class="uil uil-file uil-download-alt"></i>
+                                    <a href="assets\images\Student Athlete Resume.pdf" class="btn bg-emerald-600 hover:bg-emerald-700 border-emerald-600 dark:border-emerald-600 text-white rounded-md w-full" download> <i class="uil uil-file uil-download-alt"></i>
                                         Download CV</a>
                                 </li>
                             </ul>
@@ -345,12 +534,6 @@
                     </div><!--end col-->
                 </div><!--end grid-->
             </div><!--end container-->
-
-        
-
-     
-                          
-            
                             <div class="absolute -top-5 -start-5">
                                 <div class="uil uil-envelope lg:text-[150px] text-7xl text-black/5 dark:text-white/5 ltr:-rotate-45 "></div>
                             </div>
@@ -429,8 +612,65 @@
         <a href="#" onclick="topFunction()" id="back-to-top" class="back-to-top fixed hidden text-lg rounded-full z-10 bottom-5 end-5 h-9 w-9 text-center bg-emerald-600 text-white justify-center items-center"><i class="uil uil-arrow-up"></i></a>
 
 
-
+        <div class="modal fade" id="deletePostModal" tabindex="-1" role="dialog" aria-labelledby="deletePostModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deletePostModalLabel">Delete Post Confirmation</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to delete this post?</p>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="confirmDeleteCheckbox">
+                            <label class="form-check-label" for="confirmDeleteCheckbox">Yes, I'm sure</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                        <button type="button" class="btn btn-danger" id="confirmDeleteButton">Yes, Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <script src="all.js"></script>
+        <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script>{
+            
+let btn = document.getElementById("connectButton");
+let disp = document.getElementById("notificationCount");
+let count=0;
+btn.addEventListener("click", function () {
+    count++;
+    disp.textContent = count;
+});
+
+
+const connectButton = document.getElementById('connectButton');
+connectButton.addEventListener('click', function () {
+    // Check if the button is in the connected state
+    const isConnected = connectButton.classList.contains('connected');
+
+    if (isConnected) {
+        // Toggle back to the initial state
+        connectButton.classList.remove('connected');
+        connectButton.innerHTML = '<i class="uil uil-user-plus"></i> Connect';
+    } else {
+        // Change the button styles
+        connectButton.classList.add('connected');
+        // Update the button content
+        connectButton.innerHTML = '<i class="uil uil-check"></i> Connected';
+
+    }
+});
+
+}
+        </script>
         <!-- JAVASCRIPTS -->
     </body>
 
