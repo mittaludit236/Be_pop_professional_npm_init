@@ -1,4 +1,10 @@
 const mongoose=require("mongoose");
+const Experience=require("./Experience").schema;
+const Skill=require("./Skills").schema;
+const Education=require("./Education").schema;
+const File=require("./File").schema;
+const profile=require("./profile").schema;
+const banner=require("./banner").schema;
 const GSchema=new mongoose.Schema({
     Name:{
         type: String,
@@ -8,21 +14,23 @@ const GSchema=new mongoose.Schema({
         type: String,
         required: true,
     },
-    experiences: [
-        {
-            type: String,
-        },
-    ],
+    experiences: [ Experience ],
     projects: [
         {
             type: String,
         },
     ],
-    skills: [
-        {
-            type: String,
-        },
-    ]
+    skills: [ Skill ],
+    Education: [ Education ],
+    Location: {
+        type: String,
+    },
+    Intro: {
+        type: String,
+    },
+    Files: [ File ],
+    Profile: [ profile ],
+    Banner : [ banner ],
 });
 const Guser=mongoose.model("Guser",GSchema);
 module.exports=Guser;

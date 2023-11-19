@@ -84,14 +84,14 @@
 
                     <li class="dropdown inline-block relative ps-1">
                         <button data-dropdown-toggle="dropdown" class="dropdown-toggle items-center" type="button">
-                            <span class="btn btn-icon rounded-full bg-emerald-600 hover:bg-emerald-700 border-emerald-600 hover:border-emerald-700 text-white"><img src="assets/images/team/01.jpg" class="rounded-full" alt=""></span>
+                            <span class="btn btn-icon rounded-full bg-emerald-600 hover:bg-emerald-700 border-emerald-600 hover:border-emerald-700 text-white"><img src="uploads/<%=nm%>" class="rounded-full" alt=""></span>
                         </button>
                     
                         <div class="dropdown-menu absolute end-0 m-0 mt-4 z-10 w-44 rounded-md overflow-hidden bg-white dark:bg-slate-900 shadow dark:shadow-gray-700 hidden" onclick="event.stopPropagation();">
                             <ul class="py-2 text-start">
                              
                                 <li>
-                                    <a href="/set" class="flex items-center font-medium py-2 px-4 dark:text-white/70 hover:text-emerald-600 dark:hover:text-white"><i data-feather="settings" class="h-4 w-4 me-2"></i>Settings</a>
+                                    <a href="/set/<%=ud%>" class="flex items-center font-medium py-2 px-4 dark:text-white/70 hover:text-emerald-600 dark:hover:text-white"><i data-feather="settings" class="h-4 w-4 me-2"></i>Settings</a>
                                 </li>
                                 <li class="border-t border-gray-100 dark:border-gray-800 my-2"></li>
                              
@@ -125,7 +125,7 @@
         <section class="relative lg:mt-24 mt-[74px]">
             <div class="lg:container container-fluid">
                 <div class="relative shrink-0">
-                    <img src="assets/images/hero/bg5.jpg" class="h-64 w-full object-cover lg:rounded-xl shadow dark:shadow-gray-700" alt="">
+                    <img src="uploads/<%=bnm%>" class="h-64 w-full object-cover lg:rounded-xl shadow dark:shadow-gray-700" alt="">
                 </div>
                 <div class="custom-card">
                     <div class="custom-content">
@@ -147,23 +147,24 @@
             <div class="container">
                 <div class="grid md:grid-cols-12 grid-cols-1 gap-[30px]">
                     <div class="lg:col-span-8 md:col-span-7">
-                        <h5 class="text-xl font-semibold"> Rahul </h5>
-                        <p class="text-slate-400 mt-4">Obviously I'M Web Developer. Web Developer with over 3 years of experience. Experienced with all stages of the development cycle for dynamic web projects. The as opposed to using 'Content here, content here', making it look like readable English.</p>
-                        <p class="text-slate-400 mt-4">Data Structures and Algorithms are the heart of programming. Initially most of the developers do not realize its importance but when you will start your career in software development, you will find your code is either taking too much time or taking too much space.</p>
+                        <h5 class="text-xl font-semibold"> <%=name%> </h5>
+                        <p class="text-slate-400 mt-4"> <%= intro %> </p>
+                        <!-- <p class="text-slate-400 mt-4">Data Structures and Algorithms are the heart of programming. Initially most of the developers do not realize its importance but when you will start your career in software development, you will find your code is either taking too much time or taking too much space.</p> -->
                         
                         <h4 class="mt-6 text-xl font-semibold">Skills :</h4>
                         <div class="grid lg:grid-cols-2 grid-cols-1 mt-6 gap-6">
+                            <% for(var i=0;i<skills.length;i++){ %>
                             <div>
                                 <div class="flex justify-between mb-2">
-                                    <span class="text-slate-400">WordPress</span>
+                                    <span class="text-slate-400"> <%=skills[i].skillName%> </span>
                                     <span class="text-slate-400">10%</span>
                                 </div>
                                 <div class="w-full bg-gray-100 dark:bg-gray-800 rounded-full h-[6px]">
                                     <div class="bg-emerald-600 h-[6px] rounded-full" style="width: 84%"></div>
                                 </div>
                             </div>
-    
-                            <div>
+                            <% } %>
+                            <!-- <div>
                                 <div class="flex justify-between mb-2">
                                     <span class="text-slate-400">JavaScript</span>
                                     <span class="text-slate-400">10%</span>
@@ -212,23 +213,23 @@
                                     <div class="bg-emerald-600 h-[6px] rounded-full" style="width: 65%"></div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
                         <h4 class="mt-6 text-xl font-semibold">Experience :</h4>
-
+                        <% for(var i=0;i<exp.length;i++){ %>
                         <div class="flex mt-6">
                             <div class="text-slate-400 font-semibold min-w-[80px] text-center">
-                                <img src="assets/images/company/shree-logo.png" class="h-16 w-16 mx-auto mb-2 block" alt=""> 2019-22
+                                <img src="assets/images/company/shree-logo.png" class="h-16 w-16 mx-auto mb-2 block" alt=""> <%=exp[i].startDate%> - <%=exp[i].endDate%>
                             </div>
 
                             <div class="ms-4">
-                                <h5 class="text-lg font-medium mb-0">Full Stack Developer</h5>
-                                <span class="text-slate-400 company-university">Google - India</span>
+                                <h5 class="text-lg font-medium mb-0"> <%=exp[i].position %> </h5>
+                                <span class="text-slate-400 company-university"> <%=exp[i].companyName %> </span>
                                 <p class="text-slate-400 mt-2 mb-0">It seems that only fragments of the original text remain in the Lorem Ipsum texts used today. One may speculate that over the course of time certain letters were added or deleted at various positions within the text. </p>
                             </div>
                         </div>
-                        
-                        <div class="flex mt-6">
+                        <% } %>
+                        <!-- <div class="flex mt-6">
                             <div class="text-slate-400 font-semibold min-w-[80px] text-center">
                                 <img src="assets/images/company/circle-logo.png" class="h-16 w-16 mx-auto mb-2 block" alt=""> 2017-19
                             </div>
@@ -239,19 +240,21 @@
                                 <p class="text-slate-400 mt-2 mb-0">It seems that only fragments of the original text remain in the Lorem Ipsum texts used today. One may speculate that over the course of time certain letters were added or deleted at various positions within the text. </p>
                             </div>
                            
-                        </div>
+                        </div> -->
                         <h4 class="mt-6 text-xl font-semibold">Education :</h4>
+                        <% for(var i=0;i<edu.length;i++){ %>
                         <div class="flex mt-6">
                             <div class="text-slate-400 font-semibold min-w-[80px] text-center">
-                                <img src="assets/images/company/circle-logo.png" class="h-16 w-16 mx-auto mb-2 block" alt=""> 2017-19
+                                <img src="assets/images/company/circle-logo.png" class="h-16 w-16 mx-auto mb-2 block" alt=""> <%=edu[i].startYear %> - <%= edu[i].endYear%>
                             </div>
 
                             <div class="ms-4">
-                                <h5 class="text-lg font-medium mb-0">Motilal Nehru National Institute of Technology</h5>
-                                <span class="text-slate-400 company-university">Prayagraj, Uttar Pradesh</span>
+                                <h5 class="text-lg font-medium mb-0"> <%=edu[i].CollegeName %> </h5>
+                                <span class="text-slate-400 company-university"> <%=edu[i].Degree %> </span>
                                 <p class="text-slate-400 mt-2 mb-0"></p>
                             </div>
                         </div>
+                        <% } %>
                         <div class="rounded-md shadow dark:shadow-gray-700 p-6 mt-6">
                             <h5 class="text-xl font-semibold">Contact Me:</h5>
 
@@ -291,7 +294,7 @@
                                 <li class="flex justify-between mt-3 items-center font-medium">
                                     <span><i data-feather="mail" class="h-4 w-4 text-slate-400 me-3 inline"></i><span class="text-slate-400 me-3">Email  :</span></span>
                                     
-                                    <span> email </span>
+                                    <span> <%= email %> </span>
                                 </li>
                                 <li class="flex justify-between mt-3 items-center font-medium">
                                     <span><i data-feather="gift" class="h-4 w-4 text-slate-400 me-3 inline"></i><span class="text-slate-400 me-3">D.O.B. :</span></span>
@@ -299,29 +302,14 @@
                                     <span>31st Dec, 1996</span>
                                 </li>
                                 <li class="flex justify-between mt-3 items-center font-medium">
-                                    <span><i data-feather="home" class="h-4 w-4 text-slate-400 me-3 inline"></i><span class="text-slate-400 me-3">Address :</span></span>
-                                    
-                                    <span>Saket</span>
-                                </li>
-                                <li class="flex justify-between mt-3 items-center font-medium">
                                     <span><i data-feather="map-pin" class="h-4 w-4 text-slate-400 me-3 inline"></i><span class="text-slate-400 me-3">City :</span></span>
                                     
-                                    <span>New Delhi</span>
+                                    <span> <%=city %> </span>
                                 </li>
                                 <li class="flex justify-between mt-3 items-center font-medium">
                                     <span><i data-feather="globe" class="h-4 w-4 text-slate-400 me-3 inline"></i><span class="text-slate-400 me-3">Country :</span></span>
                                     
                                     <span>India</span>
-                                </li>
-                                <li class="flex justify-between mt-3 items-center font-medium">
-                                    <span><i data-feather="server" class="h-4 w-4 text-slate-400 me-3 inline"></i><span class="text-slate-400 me-3">Postal Code :</span></span>
-                                    
-                                    <span>110018</span>
-                                </li>
-                                <li class="flex justify-between mt-3 items-center font-medium">
-                                    <span><i data-feather="phone" class="h-4 w-4 text-slate-400 me-3 inline"></i><span class="text-slate-400 me-3">Mobile :</span></span>
-                                    
-                                    <span>+91 XXXXXXXX</span>
                                 </li>
 
                                 <li class="flex justify-between mt-3">
@@ -329,12 +317,11 @@
 
                                     <ul class="list-none  space-x-0.5">
                                         <li class="inline"><a href="#" target="_blank" class="btn btn-icon btn-sm border-2 border-gray-200 dark:border-gray-700 rounded-md hover:border-emerald-600 dark:hover:border-emerald-600 hover:bg-emerald-600 dark:hover:bg-emerald-600 hover:text-white dark:text-white text-slate-400"><i class="uil uil-dribbble align-middle" title="dribbble"></i></a></li>
-                                        <li class="inline"><a href="#" target="_blank" class="btn btn-icon btn-sm border-2 border-gray-200 dark:border-gray-700 rounded-md hover:border-emerald-600 dark:hover:border-emerald-600 hover:bg-emerald-600 dark:hover:bg-emerald-600 hover:text-white dark:text-white text-slate-400"><i class="uil uil-behance" title="Behance"></i></a></li>
                                         <li class="inline"><a href="#" target="_blank" class="btn btn-icon btn-sm border-2 border-gray-200 dark:border-gray-700 rounded-md hover:border-emerald-600 dark:hover:border-emerald-600 hover:bg-emerald-600 dark:hover:bg-emerald-600 hover:text-white dark:text-white text-slate-400"><i class="uil uil-linkedin" title="Linkedin"></i></a></li>
                                         <li class="inline"><a href="#" target="_blank" class="btn btn-icon btn-sm border-2 border-gray-200 dark:border-gray-700 rounded-md hover:border-emerald-600 dark:hover:border-emerald-600 hover:bg-emerald-600 dark:hover:bg-emerald-600 hover:text-white dark:text-white text-slate-400"><i class="uil uil-facebook-f align-middle" title="facebook"></i></a></li>
                                         <li class="inline"><a href="#" target="_blank" class="btn btn-icon btn-sm border-2 border-gray-200 dark:border-gray-700 rounded-md hover:border-emerald-600 dark:hover:border-emerald-600 hover:bg-emerald-600 dark:hover:bg-emerald-600 hover:text-white dark:text-white text-slate-400"><i class="uil uil-instagram align-middle" title="instagram"></i></a></li>
                                         <li class="inline"><a href="#" target="_blank" class="btn btn-icon btn-sm border-2 border-gray-200 dark:border-gray-700 rounded-md hover:border-emerald-600 dark:hover:border-emerald-600 hover:bg-emerald-600 dark:hover:bg-emerald-600 hover:text-white dark:text-white text-slate-400"><i class="uil uil-twitter align-middle" title="twitter"></i></a></li>
-                                        <li class="inline"><a href="#" class="btn btn-icon btn-sm border-2 border-gray-200 dark:border-gray-700 rounded-md hover:border-emerald-600 dark:hover:border-emerald-600 hover:bg-emerald-600 dark:hover:bg-emerald-600 hover:text-white dark:text-white text-slate-400"><i class="uil uil-envelope align-middle" title="email"></i></a></li>
+                                     
                                     </ul><!--end icon-->
                                 </li>
 
@@ -344,7 +331,7 @@
                                         <span class="font-medium ms-2">resume.pdf</span>
                                     </div>
 
-                                    <a href="assets/images/calvin-carlo-resume.pdf" class="btn bg-emerald-600 hover:bg-emerald-700 border-emerald-600 dark:border-emerald-600 text-white rounded-md w-full" download><i class="uil uil-file-download-alt"></i> Download CV</a>
+                                    <a href="/view/<%=ud%>" class="btn bg-emerald-600 hover:bg-emerald-700 border-emerald-600 dark:border-emerald-600 text-white rounded-md w-full"><i class="uil uil-file-download-alt"></i> View CV</a>
                                 </li>
                             </ul>
                         </div>

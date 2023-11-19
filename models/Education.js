@@ -1,21 +1,21 @@
 const mongoose=require("mongoose");
-const ExperienceSchema=new mongoose.Schema({
-    companyName: {
+const EducationSchema=new mongoose.Schema({
+    CollegeName: {
         type: String,
         required: true,
     },
-    position: {
+    Degree: {
         type: String,
         required: true,
     },
-    startDate: { 
+    startYear: { 
         type: Number,
         required: false,
     },
-    endDate: {
+    endYear: {
         type: Number,
         required: false,
     },
 });
-const Experience=mongoose.model("Experience",ExperienceSchema);
-module.exports=Experience;
+const Education=mongoose.model("Education",EducationSchema);
+module.exports=Education;
