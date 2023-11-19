@@ -1,16 +1,3 @@
-if (document.getElementById("navigation")) {
-    var elements = document.getElementById("navigation").getElementsByTagName("a");
-    for (var i = 0; i < elements.length; i++) {
-        elements[i].onclick = function (elem) {
-            if (elem.target.getAttribute("href") === "javascript:void(0)") {
-                var submenu = elem.target.nextElementSibling.nextElementSibling;
-                submenu.classList.toggle('open');
-            }
-        }
-    }
-}
-
-
 function windowScroll() {
     const navbar = document.getElementById("topnav");
     if (navbar != null) {
@@ -22,13 +9,6 @@ function windowScroll() {
     }
 }
 
-window.addEventListener('scroll', (ev) => {
-    ev.preventDefault();
-    windowScroll();
-})
-/*********************/
-/*    Back To Top    */
-/*********************/
 
 window.onscroll = function () {
     scrollFunction();
@@ -49,41 +29,23 @@ function scrollFunction() {
 
 function topFunction() {
     document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
+   
 }
 
 
-/*  Active Sidebar   */
-
-
-
-
-
-
-/*********************/
 /* Dark & Light Mode */
-/*********************/
+
 try {
-    function changeTheme(e){
-        e.preventDefault()
-        const htmlTag = document.getElementsByTagName("html")[0]
-        
-        if (htmlTag.className.includes("dark")) {
-            htmlTag.className = 'light'
-        } else {
-            htmlTag.className = 'dark'
-        }
-    }
+    const htmlTag = document.documentElement;
+    const switcher = document.getElementById("theme-mode") || document.getElementById('chk');
 
-    const switcher = document.getElementById("theme-mode")
-    switcher?.addEventListener("click" ,changeTheme )
-    
-    const chk = document.getElementById('chk');
-
-    chk.addEventListener('change',changeTheme);
+    switcher?.addEventListener("click", () => {
+        htmlTag.classList.toggle("dark");
+    });
 } catch (err) {
-    
+    console.error("An error occurred:", err);
 }
+
 
 
 

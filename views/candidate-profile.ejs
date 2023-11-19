@@ -42,7 +42,7 @@
 
                     <li class="dropdown inline-block relative ps-1">
                         <button data-dropdown-toggle="dropdown" class="dropdown-toggle items-center" type="button">
-                            <span class="btn btn-icon rounded-full bg-emerald-600 hover:bg-emerald-700 border-emerald-600 hover:border-emerald-700 text-white"><img src="assets/images/team/01.jpg" class="rounded-full" alt=""></span>
+                            <span class="btn btn-icon rounded-full bg-emerald-600 hover:bg-emerald-700 border-emerald-600 hover:border-emerald-700 text-white"><img src="uploads/<%=nm%>" class="rounded-full" alt=""></span>
                         </button>
                         <!-- Dropdown menu -->
                         <div class="dropdown-menu absolute end-0 m-0 mt-4 z-10 w-44 rounded-md overflow-hidden bg-white dark:bg-slate-900 shadow dark:shadow-gray-700 hidden" onclick="event.stopPropagation();">
@@ -63,28 +63,31 @@
 
         <section class="relative lg:mt-24 mt-[74px] pb-16">
             <div class="lg:container container-fluid">
+                <form id="profileForm1" action="/set/<%=ud%>" method="post" enctype="multipart/form-data">
                 <div class="profile-banner relative text-transparent">
-                    <input id="pro-banner" name="profile-banner" type="file" class="hidden" onchange="loadFile(event)" />
+                    <input id="pro-banner" name="profileBanner" type="file" class="hidden" onchange="loadFile1(event)" />
                     <div class="relative shrink-0">
-                        <img src="assets/images/hero/bg5.jpg" class="h-64 w-full object-cover lg:rounded-xl shadow dark:shadow-gray-700" id="profile-banner" alt="">
+                        <img src="uploads/<%=bnm%>" class="h-64 w-full object-cover lg:rounded-xl shadow dark:shadow-gray-700" id="banner-image" alt="">
                         <label class="absolute inset-0 cursor-pointer" for="pro-banner"></label>
                     </div>
                 </div>
+                </form>
             
 
                 <div class="md:flex mx-4 -mt-12">
                     <div class="md:w-full">
                         <div class="relative flex items-end">
+                            <form id="profileForm" action="/set/<%=ud%>" method="post" enctype="multipart/form-data">
                             <div class="profile-pic text-center">
-                                <input id="pro-img" name="profile-image" type="file" class="hidden" onchange="loadFile(event)" />
+                                <input id="pro-img" name="profileImage" type="file" class="hidden" onchange="loadFile(event)" >
                                 <div>
                                     <div class="relative h-28 w-28 max-w-[112px] max-h-[112px] mx-auto">
-                                        <img src="assets/images/team/01.jpg" class="rounded-full shadow dark:shadow-gray-800 ring-4 ring-slate-50 dark:ring-slate-800" id="profile-image" alt="">
+                                        <img src="uploads/<%=nm%>" class="rounded-full shadow dark:shadow-gray-800 ring-4 ring-slate-50 dark:ring-slate-800" id="profile-image" alt="">
                                         <label class="absolute inset-0 cursor-pointer" for="pro-img"></label>
                                     </div>
                                 </div>
                             </div>
-                           
+                           </form>
                             <div class="ms-4">
                                 <h5 class="text-lg font-semibold">Mr. Rahul Sharma</h5>
                                 <p class="text-slate-400">Web Designer</p>
@@ -98,15 +101,15 @@
                 <div class="grid grid-cols-1 gap-[30px]">
                     <div class="p-6 rounded-md shadow dark:shadow-gray-800 bg-white dark:bg-slate-900">
                         <h5 class="text-lg font-semibold mb-4">Personal Detail :</h5>
-                        <form>
+                        <form action="/set/<%=ud%>" method="post" enctype="multipart/form-data">
                             <div class="grid lg:grid-cols-2 grid-cols-1 gap-4">
                                 <div>
                                     <label class="form-label font-medium">First Name : <span class="text-red-600">*</span></label>
-                                    <input type="text" class="form-input border border-slate-100 dark:border-slate-800 mt-2" placeholder="First Name:" id="firstname" name="name" required="">
+                                    <input type="text" class="form-input border border-slate-100 dark:border-slate-800 mt-2" placeholder="First Name:" id="firstname" name="fname" required="">
                                 </div>
                                 <div>
                                     <label class="form-label font-medium">Last Name : <span class="text-red-600">*</span></label>
-                                    <input type="text" class="form-input border border-slate-100 dark:border-slate-800 mt-2" placeholder="Last Name:" id="lastname" name="name" required="">
+                                    <input type="text" class="form-input border border-slate-100 dark:border-slate-800 mt-2" placeholder="Last Name:" id="lastname" name="lname" required="">
                                 </div>
                                 <div>
                                     <label class="form-label font-medium">Your Email : <span class="text-red-600">*</span></label>
@@ -114,7 +117,7 @@
                                 </div>
                                 <div>
                                     <label class="form-label font-medium">Occupation :</label>
-                                    <select class="form-select form-input border border-slate-100 dark:border-slate-800 block w-full mt-2">
+                                    <select class="form-select form-input border border-slate-100 dark:border-slate-800 block w-full mt-2" name="occupation">
                                         <option value="WD">Web Designer</option>
                                         <option value="WD">Web Developer</option>
                                         <option value="UI">UI / UX Desinger</option>
@@ -122,7 +125,7 @@
                                 </div>
                                 <div>
                                     <label class="form-label font-medium">Location :</label>
-                                    <select class="form-select form-input border border-slate-100 dark:border-slate-800 block w-full mt-2">
+                                    <select class="form-select form-input border border-slate-100 dark:border-slate-800 block w-full mt-2" name="location">
                                         <option value="De">Delhi</option>
                                         <option value="BA">Bangalore</option>
                                         <option value="Pu">Pune</option>
@@ -130,14 +133,14 @@
                                 </div>
                                 <div>
                                     <label class="form-label font-medium" for="multiple_files">Upload Resume:</label>
-                                    <input class="relative form-input border border-slate-100 dark:border-slate-800 file:h-10 file:-mx-3 file:-my-2 file:cursor-pointer file:rounded-none file:border-0 file:px-3 file:text-neutral-700 bg-clip-padding px-3 py-1.5 file:me-3 mt-2" id="multiple_files" type="file" multiple>
+                                    <input class="relative form-input border border-slate-100 dark:border-slate-800 file:h-10 file:-mx-3 file:-my-2 file:cursor-pointer file:rounded-none file:border-0 file:px-3 file:text-neutral-700 bg-clip-padding px-3 py-1.5 file:me-3 mt-2" id="multiple_files" type="file" name="file">
                                 </div>
                             </div><!--end grid-->
 
                             <div class="grid grid-cols-1">
                                 <div class="mt-3">
                                     <label class="form-label font-medium">Intro : </label>
-                                    <textarea name="comments" id="comments" class="form-input border border-slate-100 dark:border-slate-800 mt-2 textarea" placeholder="Intro :"></textarea>
+                                    <textarea name="intro" id="comments" class="form-input border border-slate-100 dark:border-slate-800 mt-2 textarea" placeholder="Intro :"></textarea>
                                 </div>
                             </div><!--end row-->
                             
@@ -172,11 +175,10 @@
                                 </div>
                                 
                                 <div class="mb-4 text-center">
-                                    <button type="button" class="btn bg-emerald-600 hover-bg-emerald-700 border-emerald-600 hover-border-emerald-700 text-white rounded-md butreq">Save Changes</button>
+                                    <button type="submit" class="btn bg-emerald-600 hover-bg-emerald-700 border-emerald-600 hover-border-emerald-700 text-white rounded-md butreq">Save Changes</button>
                                   </div>
-
                     </div>
-
+                    </form>
                     <div class="p-6 rounded-md shadow dark:shadow-gray-800 bg-white dark:bg-slate-900">
                         <div class="grid lg:grid-cols-2 grid-cols-1 gap-4">
                             <div>
@@ -422,26 +424,26 @@
                     </div>
                     <div class="modal-body">
                         <!-- Education Form -->
-                        <form>
+                        <form action="/set/<%=ud%>" method="post">
                             <div class="mb-3">
                                 <label for="schoolInput" class="form-label">School/College Name</label>
-                                <input type="text" class="form-control" id="schoolInput" required>
+                                <input type="text" class="form-control" id="schoolInput" required name="cName">
                             </div>
                             <div class="mb-3">
                                 <label for="degreeInput" class="form-label">Degree</label>
-                                <input type="text" class="form-control" id="degreeInput" required>
+                                <input type="text" class="form-control" id="degreeInput" required name="degree">
                             </div>
                             <div class="mb-3">
                                 <label for="startYearInput" class="form-label">Year of Start</label>
-                                <input type="number" class="form-control" id="startYearInput" required>
+                                <input type="number" class="form-control" id="startYearInput" required name="sy">
                             </div>
                             <div class="mb-3">
                                 <label for="endYearInput" class="form-label">Year of Pass</label>
-                                <input type="number" class="form-control" id="endYearInput" required>
+                                <input type="number" class="form-control" id="endYearInput" required name="ey">
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" id="adding">Add Education</button>
+                                <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                                <button type="submit" class="btn btn-primary" id="adding">Add Education</button>
                             </div>
                         </form>
                     </div>
@@ -457,26 +459,26 @@
                     </div>
                     <div class="modal-body">
                         <!-- Experience Form -->
-                        <form>
+                        <form action="/set/<%=ud%>" method="post">
                             <div class="mb-3">
                                 <label for="companyinput" class="form-label">Company Name</label>
-                                <input type="text" class="form-control" id="companyinput" required>
+                                <input type="text" class="form-control" id="companyinput" required name="nm">
                             </div>
                             <div class="mb-3">
                                 <label for="title" class="form-label">Title</label>
-                                <input type="text" class="form-control" id="title" required>
+                                <input type="text" class="form-control" id="title" required name="title">
                             </div>
                             <div class="mb-3">
                                 <label for="startYearInput" class="form-label">Year of Start</label>
-                                <input type="number" class="form-control" id="startYearInput" required>
+                                <input type="number" class="form-control" id="startYearInput" required name="start">
                             </div>
                             <div class="mb-3">
                                 <label for="endYearInput" class="form-label">Year of Pass</label>
-                                <input type="number" class="form-control" id="endYearInput" required>
+                                <input type="number" class="form-control" id="endYearInput" required name="end">
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" id="adding2">Add Experience</button>
+                                <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                                <button type="submit" class="btn btn-primary" id="adding2">Add Experience</button>
                             </div>
                         </form>
                     </div>
@@ -492,20 +494,20 @@
                     </div>
                     <div class="modal-body">
                         <!-- Skill Form -->
-                        <form>
+                        <form action="/set/<%=ud%>" method="post">
                             <p>Add the skills to improve your profile</p>
                             <div class="mb-3">
                                 <label for="skills" class="form-label font-medium">Skills:</label>
-                                <select class="form-select form-input border border-slate-100 dark:border-slate-800 block w-full mt-2" id="skills">
-                                    <option value="Wd">Web Dev</option>
-                                    <option value="C">C++</option>
-                                    <option value="JS">JavaScript</option>
+                                <select class="form-select form-input border border-slate-100 dark:border-slate-800 block w-full mt-2" id="skills" name="skill">
+                                    <option value="Web Dev">Web Dev</option>
+                                    <option value="C++">C++</option>
+                                    <option value="JavaScript">JavaScript</option>
                                 </select>
                             </div>
         
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" id="addingSkills">Add Skill</button>
+                                <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                                <button type="submit" class="btn btn-primary" id="addingSkills">Add Skill</button>
                             </div>
                         </form>
                     </div>
@@ -514,12 +516,39 @@
         </div>
         
         
-        <script src="all.js"> </script> 
         <script src="assets/libs/tobii/js/tobii.min.js"></script> 
         <script src="assets/libs/choices.js/public/assets/scripts/choices.min.js"></script> 
         <script src="assets/libs/feather-icons/feather.min.js"></script> 
         <script src="assets/js/plugins.init.js"></script> 
         <script src="assets/js/app.js"></script>
+        <script>
+            function loadFile(event) {
+        const image = document.getElementById('profile-image');
+        const input = event.target;
+
+        const reader = new FileReader();
+        reader.onload = function () {
+            image.src = reader.result;
+        };
+        reader.readAsDataURL(input.files[0]);
+
+        // Trigger form submission when an image is selected
+        document.getElementById('profileForm').submit();
+    }
+    function loadFile1(event) {
+        const image = document.getElementById('banner-image');
+        const input = event.target;
+
+        const reader = new FileReader();
+        reader.onload = function () {
+            image.src = reader.result;
+        };
+        reader.readAsDataURL(input.files[0]);
+
+        // Trigger form submission when an image is selected
+        document.getElementById('profileForm1').submit();
+    }
+        </script>
         <!-- JAVASCRIPTS -->
     </body>
 
