@@ -8,13 +8,12 @@
         <meta name="version" content="1.3.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-
+        <link rel="stylesheet" href="path/to/iconmoon/style.css">
         <link rel="shortcut icon" href="assets/images/favicon.ico">
-
-
-        <link href="assets/libs/%40iconscout/unicons/css/line.css" type="text/css" rel="stylesheet">
-        <link href="assets/libs/%40mdi/font/css/materialdesignicons.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
         <link href="assets/css/tailwind.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+        
 
         <style>
             .custom-card {
@@ -55,32 +54,45 @@
 .custom-role {
     color: #888888;
 }
-.search-input{
-    outline: none;
-    border: 1px solid grey;
-    border-radius: 5px;
-    margin-top: 1.3rem;
-}
-.search-result{
-    background-color: #434242;
+
+
+
+.notification .notification-count {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    padding: 5px 10px;
+    border-radius: 50%;
+    background-color: pink;
     color: white;
-    border-radius: 10px;
-    margin-top:.5rem;
 }
 
+#connectButton.connected {
+    background-color: white;
+    color: black;
+}
+#connectButton.connected:hover {
+    background-color: white;
+    color: black;
+}
         </style>
     </head>
     
     <body class="dark:bg-slate-900">
        
-        <nav id="topnav" class="defaultscroll is-sticky">
-            <div class="container">
-        
+        <nav id="topnav">
+            <div class="container" class="defaultscroll is-sticky">
                 <ul class="buy-button list-none mb-0">
-                    <li class="inline-block mb-0">
-                      
-                    </li>            
-
+                    <li class="dropdown2 inline-block relative ps-1">
+                        <button data-dropdown-toggle="dropdown2" class="dropdown-toggle2 items-center notification" type="button" id="bellDropdownButton" style="padding: 10px 15px; display: inline-block; ">
+                            <span class="btn btn-icon rounded-full bg-emerald-600 hover:bg-emerald-700 border-emerald-600 hover:border-emerald-700 text-white">
+                                <i class="uil uil-bell"></i>
+                                <span id="notificationCount" class="notification-count">0</span>
+                            </span>
+                        </button>
+                       
+                    </li>
+                    
                     <li class="dropdown inline-block relative ps-1">
                         <button data-dropdown-toggle="dropdown" class="dropdown-toggle items-center" type="button">
                             <span class="btn btn-icon rounded-full bg-emerald-600 hover:bg-emerald-700 border-emerald-600 hover:border-emerald-700 text-white"><img src="assets/images/team/01.jpg" class="rounded-full" alt=""></span>
@@ -90,12 +102,12 @@
                             <ul class="py-2 text-start">
                              
                                 <li>
-                                    <a href="candidate-profile-setting.html" class="flex items-center font-medium py-2 px-4 dark:text-white/70 hover:text-emerald-600 dark:hover:text-white"><i data-feather="settings" class="h-4 w-4 me-2"></i>Settings</a>
+                                    <a href="/set/<%=ud%>" class="flex items-center font-medium py-2 px-4 dark:text-white/70 hover:text-emerald-600 dark:hover:text-white"><i data-feather="settings" class="h-4 w-4 me-2"></i>Profile Settings</a>
                                 </li>
                                 <li class="border-t border-gray-100 dark:border-gray-800 my-2"></li>
                              
                                 <li>
-                                    <a href="login.html" class="flex items-center font-medium py-2 px-4 dark:text-white/70 hover:text-emerald-600 dark:hover:text-white"><i data-feather="log-out" class="h-4 w-4 me-2"></i>Logout</a>
+                                    <a href="/logout" class="flex items-center font-medium py-2 px-4 dark:text-white/70 hover:text-emerald-600 dark:hover:text-white"><i data-feather="log-out" class="h-4 w-4 me-2"></i>Logout</a>
                                 </li>
                             </ul>
                         </div>
@@ -105,18 +117,14 @@
               
                 <div id="navigation">
                     <!-- Navigation Menu-->   
-                    <form action="/search" method="post">
                     <ul class="navigation-menu">
-                        <li class="has-submenu parent-menu-item" data-toggle="modal" data-target="#myModal">
-                          <a href="#" >Community</a>
-                        </li>
-                        <li><a href="applyforjob.html" class="sub-menu-item">Apply for Job </a></li>
                         <li>
-                            <input type="text" class="search-input" id="searchInput" placeholder="&nbsp; Search Profile" oninput="handleSearchChange()">
-                            <ul id="searchResults" class="search-result"></ul>
+                          <a href="/community/<%=ud%>" >Community</a>
                         </li>
+                        <li><a href="applyforjob.html" >Apply for Job </a></li>
+                        
+                      
                     </ul>
-                </form>
                 </div>
             </div>
         </nav>
@@ -124,7 +132,7 @@
         <section class="relative lg:mt-24 mt-[74px]">
             <div class="lg:container container-fluid">
                 <div class="relative shrink-0">
-                    <img src="assets/images/hero/bg5.jpg" class="h-64 w-full object-cover lg:rounded-xl shadow dark:shadow-gray-700" alt="">
+                    <img src="uploads/<%=bnm%>" class="h-64 w-full object-cover lg:rounded-xl shadow dark:shadow-gray-700" alt="">
                 </div>
                 <div class="custom-card">
                     <div class="custom-content">
@@ -146,23 +154,32 @@
             <div class="container">
                 <div class="grid md:grid-cols-12 grid-cols-1 gap-[30px]">
                     <div class="lg:col-span-8 md:col-span-7">
-                        <h5 class="text-xl font-semibold"> Rahul </h5>
-                        <p class="text-slate-400 mt-4">Obviously I'M Web Developer. Web Developer with over 3 years of experience. Experienced with all stages of the development cycle for dynamic web projects. The as opposed to using 'Content here, content here', making it look like readable English.</p>
-                        <p class="text-slate-400 mt-4">Data Structures and Algorithms are the heart of programming. Initially most of the developers do not realize its importance but when you will start your career in software development, you will find your code is either taking too much time or taking too much space.</p>
+                        <h5 class="text-xl font-semibold"> <%=name%> </h5>
+                        <p class="text-slate-400 mt-4"><%= intro %></p>
+                        
+                        
+                          <!-- Buttons section -->
+                        <br>
+                        <button id="connectButton" class="btn bg-emerald-600 hover:bg-emerald-700 border-emerald-600 dark:border-emerald-600 text-white rounded-md">
+                            <i class="uil uil-user-plus"></i> Connect
+                        </button>
+                        
+                        <button type="button" class="btn bg-emerald-600 hover:bg-emerald-700 border-emerald-600 dark:border-emerald-600 text-white rounded-md"> <i class="uil uil-message"></i>Message</button>
                         
                         <h4 class="mt-6 text-xl font-semibold">Skills :</h4>
                         <div class="grid lg:grid-cols-2 grid-cols-1 mt-6 gap-6">
+                            <% for(var i=0;i<skills.length;i++){ %>
                             <div>
                                 <div class="flex justify-between mb-2">
-                                    <span class="text-slate-400">WordPress</span>
+                                    <span class="text-slate-400"><%=skills[i].skillName%></span>
                                     <span class="text-slate-400">10%</span>
                                 </div>
                                 <div class="w-full bg-gray-100 dark:bg-gray-800 rounded-full h-[6px]">
                                     <div class="bg-emerald-600 h-[6px] rounded-full" style="width: 84%"></div>
                                 </div>
                             </div>
-    
-                            <div>
+                            <% } %>
+                            <!-- <div>
                                 <div class="flex justify-between mb-2">
                                     <span class="text-slate-400">JavaScript</span>
                                     <span class="text-slate-400">10%</span>
@@ -210,24 +227,24 @@
                                 <div class="w-full bg-gray-100 dark:bg-gray-800 rounded-full h-[6px]">
                                     <div class="bg-emerald-600 h-[6px] rounded-full" style="width: 65%"></div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
 
                         <h4 class="mt-6 text-xl font-semibold">Experience :</h4>
-
+                        <% for(var i=0;i<exp.length;i++){ %>
                         <div class="flex mt-6">
                             <div class="text-slate-400 font-semibold min-w-[80px] text-center">
-                                <img src="assets/images/company/shree-logo.png" class="h-16 w-16 mx-auto mb-2 block" alt=""> 2019-22
+                                <img src="assets/images/company/shree-logo.png" class="h-16 w-16 mx-auto mb-2 block" alt=""> <%=exp[i].startDate%> - <%=exp[i].endDate%>
                             </div>
 
                             <div class="ms-4">
-                                <h5 class="text-lg font-medium mb-0">Full Stack Developer</h5>
-                                <span class="text-slate-400 company-university">Google - India</span>
+                                <h5 class="text-lg font-medium mb-0"><%=exp[i].position %></h5>
+                                <span class="text-slate-400 company-university"><%=exp[i].companyName %></span>
                                 <p class="text-slate-400 mt-2 mb-0">It seems that only fragments of the original text remain in the Lorem Ipsum texts used today. One may speculate that over the course of time certain letters were added or deleted at various positions within the text. </p>
                             </div>
                         </div>
-                        
-                        <div class="flex mt-6">
+                        <% } %>
+                        <!-- <div class="flex mt-6">
                             <div class="text-slate-400 font-semibold min-w-[80px] text-center">
                                 <img src="assets/images/company/circle-logo.png" class="h-16 w-16 mx-auto mb-2 block" alt=""> 2017-19
                             </div>
@@ -237,40 +254,224 @@
                                 <span class="text-slate-400 company-university">Facebook - U.S.A.</span>
                                 <p class="text-slate-400 mt-2 mb-0">It seems that only fragments of the original text remain in the Lorem Ipsum texts used today. One may speculate that over the course of time certain letters were added or deleted at various positions within the text. </p>
                             </div>
-                        </div>
-
-                        <div class="rounded-md shadow dark:shadow-gray-700 p-6 mt-6">
-                            <h5 class="text-xl font-semibold">Contact Me:</h5>
-
-                            <form method="post" name="myForm" id="myForm" class="mt-4" onsubmit="return validateForm()">
-                                <p class="mb-0" id="error-msg"></p>
-                                <div id="simple-msg"></div>
-                                <div class="grid grid-cols-12 gap-2">
-                                    <div class="md:col-span-6 col-span-12">
-                                        <label for="name" class="font-semibold">Your Name:</label>
-                                        <input name="name" id="name" type="text" class="form-input border border-slate-100 dark:border-slate-800 mt-2" placeholder="Name :">
-                                    </div>
+                        </div> -->
+                        <h4 class="mt-6 text-xl font-semibold">Education :</h4>
+                        <% for(var i=0;i<edu.length;i++){ %>
+<div class="flex mt-6">
     
-                                    <div class="md:col-span-6 col-span-12">
-                                        <label for="email" class="font-semibold">Your Email:</label>
-                                        <input name="email" id="email" type="email" class="form-input border border-slate-100 dark:border-slate-800 mt-2" placeholder="Email :">
-                                    </div>
+    <div class="text-slate-400 font-semibold min-w-[80px] text-center">
+        <img src="assets\images\company\2.jpg" class="h-16 w-16 mx-auto mb-2 block" alt=""> <%=edu[i].startYear %> - <%= edu[i].endYear%>
+    </div>
 
-                                    <div class="col-span-12">
-                                        <label for="subject" class="font-semibold">Your Question:</label>
-                                        <input name="subject" id="subject" class="form-input border border-slate-100 dark:border-slate-800 mt-2" placeholder="Subject :">
-                                    </div>
+    <div class="ms-4">
+        <h5 class="text-lg font-medium mb-0"> <%=edu[i].Degree %></h5>
+        <span class="text-slate-400 company-university"><%=edu[i].CollegeName %> </span>
+        <p class="text-slate-400 mt-2 mb-0"></p>
+    </div> 
+</div>
+<% } %>
 
-                                    <div class="col-span-12">
-                                        <label for="comments" class="font-semibold">Your Comment:</label>
-                                        <textarea name="comments" id="comments" class="form-input border border-slate-100 dark:border-slate-800 mt-2 textarea" placeholder="Message :"></textarea>
-                                    </div>
-                                </div>
-                                <button type="submit" id="submit" name="send" class="btn bg-emerald-600 hover:bg-emerald-700 text-white rounded-md">Send Message</button>
-                            </form>
-                        </div>
+<h2 class="mt-6 text-xl font-semibold">Posts :</h2>
+
+<div class="flex mt-6">
+    <div class="lg:col-span-8 md:col-span-6">
+        <div class="grid grid-cols-1 gap-[30px]">
+            <% for(var i=0;i<posts.length;i++) { %>
+    <div class="group rounded-lg shadow-lg hover:shadow-lg dark:shadow-gray-700 transition-all duration-500">
+        <div class="flex items-center justify-between p-6">
+            <div class="flex items-center">
+                <div class="w-14 h-14 flex items-center justify-center bg-white dark:bg-slate-900 shadow dark:shadow-gray-700 rounded-md">
+                    <img src="uploads/<%=nm%>" class="h-8 w-8" alt="">
+                </div>
+    
+                <div class="ms-3">
+                    <a href="/profile_pg1/<%=ud1%>" class="block text-lg font-semibold hover:text-emerald-600 transition-all duration-500"><%=posts[i].name%></a>
+                    <span class="block text-sm text-slate-400"><%=posts[i].date%></span>
+                </div>
+            </div>
+            <div class="dropdown inline-block relative ps-1">
+                <button data-dropdown-toggle="dropdown" class="dropdown-toggle items-center" type="button">
+                    <span class="btn btn-icon rounded-full bg-emerald-600 hover:bg-emerald-700 border-emerald-600 hover:border-emerald-700 text-white">
+                        <i class="uil uil-direction"></i>
+                    </span>
+                </button>
+    
+                <div class="dropdown-menu absolute end-0 m-0 mt-4 z-10 w-44 rounded-md overflow-hidden bg-white dark:bg-slate-900 shadow dark:shadow-gray-700 hidden" onclick="event.stopPropagation();">
+                    <ul class="py-2 text-start">
+                        <li>
+                            <a href="#" class="flex items-center font-medium py-2 px-4 dark:text-white/70 hover:text-emerald-600 dark:hover:text-white">
+                                <iconify-icon icon="mdi:edit" style="margin-right: 8px;"></iconify-icon>
+                                Edit Post
+                            </a>
+                        </li>
+                        <li class="border-t border-gray-100 dark:border-gray-800 my-2"></li>
+                        <li>
+                            <a href="#" class="flex items-center font-medium py-2 px-4 dark:text-white/70 hover:text-emerald-600 dark:hover:text-white" data-toggle="modal" data-target="#deletePostModal">
+                                <iconify-icon icon="mdi:delete" style="margin-right: 8px;"></iconify-icon>
+                                Delete Post
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    
+        <div class="lg:flex items-center justify-between border-t border-gray-100 dark:border-gray-800 p-6">
+            <p class="text-slate-400 lg:mt-0 mt-4">
+                <%=posts[i].describe%>
+            </p>
+        </div>
+        <div class="flex items-center justify-center">
+            <img src="uploads/<%=posts[i].image[0].name%>" alt="Additional Image" class="w-48 h-48 rounded-md mt-4">
+        </div>
+
+    </div><!--end content-->
+    <% } %>
+    <!-- <div class="group rounded-lg shadow-lg hover:shadow-lg dark:shadow-gray-700 transition-all duration-500">
+        <div class="flex items-center justify-between p-6">
+            <div class="flex items-center">
+                <div class="w-14 h-14 flex items-center justify-center bg-white dark:bg-slate-900 shadow dark:shadow-gray-700 rounded-md">
+                    <img src="assets/images/team/01.jpg" class="h-8 w-8" alt="">
+                </div>
+    
+                <div class="ms-3">
+                    <a href="employer-profile.html" class="block text-lg font-semibold hover:text-emerald-600 transition-all duration-500">Sujal Pandey</a>
+                    <span class="block text-sm text-slate-400">2 days ago</span>
+                </div>
+            </div>
+            <div class="dropdown inline-block relative ps-1">
+                <button data-dropdown-toggle="dropdown" class="dropdown-toggle items-center" type="button">
+                    <span class="btn btn-icon rounded-full bg-emerald-600 hover:bg-emerald-700 border-emerald-600 hover:border-emerald-700 text-white">
+                        <i class="uil uil-direction"></i>
+                    </span>
+                </button>
+    
+                <div class="dropdown-menu absolute end-0 m-0 mt-4 z-10 w-44 rounded-md overflow-hidden bg-white dark:bg-slate-900 shadow dark:shadow-gray-700 hidden" onclick="event.stopPropagation();">
+                    <ul class="py-2 text-start">
+                        <li>
+                            <a href="#" class="flex items-center font-medium py-2 px-4 dark:text-white/70 hover:text-emerald-600 dark:hover:text-white">
+                                <iconify-icon icon="mdi:edit" style="margin-right: 8px;"></iconify-icon>
+                                Edit Post
+                            </a>
+                        </li>
+                        <li class="border-t border-gray-100 dark:border-gray-800 my-2"></li>
+                        <li>
+                            <a href="#" class="flex items-center font-medium py-2 px-4 dark:text-white/70 hover:text-emerald-600 dark:hover:text-white" data-toggle="modal" data-target="#deletePostModal">
+                                <iconify-icon icon="mdi:delete" style="margin-right: 8px;"></iconify-icon>
+                                Delete Post
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    
+        <div class="lg:flex items-center justify-between border-t border-gray-100 dark:border-gray-800 p-6">
+            <p class="text-slate-400 lg:mt-0 mt-4">
+                Hello, guys! This is my first post. Solving 350 questions on the LeetCode platform has been a great journey for me. XYZXYZCYX xvxvx sdsfsdfsf
+            </p>
+        </div>
+
+    </div>
+    <div class="group rounded-lg shadow-lg hover:shadow-lg dark:shadow-gray-700 transition-all duration-500">
+        <div class="flex items-center justify-between p-6">
+            <div class="flex items-center">
+                <div class="w-14 h-14 flex items-center justify-center bg-white dark:bg-slate-900 shadow dark:shadow-gray-700 rounded-md">
+                    <img src="assets/images/team/01.jpg" class="h-8 w-8" alt="">
+                </div>
+    
+                <div class="ms-3">
+                    <a href="employer-profile.html" class="block text-lg font-semibold hover:text-emerald-600 transition-all duration-500">Sujal Pandey</a>
+                    <span class="block text-sm text-slate-400">2 days ago</span>
+                </div>
+            </div>
+            <div class="dropdown inline-block relative ps-1">
+                <button data-dropdown-toggle="dropdown" class="dropdown-toggle items-center" type="button">
+                    <span class="btn btn-icon rounded-full bg-emerald-600 hover:bg-emerald-700 border-emerald-600 hover:border-emerald-700 text-white">
+                        <i class="uil uil-direction"></i>
+                    </span>
+                </button>
+    
+                <div class="dropdown-menu absolute end-0 m-0 mt-4 z-10 w-44 rounded-md overflow-hidden bg-white dark:bg-slate-900 shadow dark:shadow-gray-700 hidden" onclick="event.stopPropagation();">
+                    <ul class="py-2 text-start">
+                        <li>
+                            <a href="#" class="flex items-center font-medium py-2 px-4 dark:text-white/70 hover:text-emerald-600 dark:hover:text-white">
+                                <iconify-icon icon="mdi:edit" style="margin-right: 8px;"></iconify-icon>
+                                Edit Post
+                            </a>
+                        </li>
+                        <li class="border-t border-gray-100 dark:border-gray-800 my-2"></li>
+                        <li>
+                            <a href="#" class="flex items-center font-medium py-2 px-4 dark:text-white/70 hover:text-emerald-600 dark:hover:text-white" data-toggle="modal" data-target="#deletePostModal">
+                                <iconify-icon icon="mdi:delete" style="margin-right: 8px;"></iconify-icon>
+                                Delete Post
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    
+        <div class="lg:flex items-center justify-between border-t border-gray-100 dark:border-gray-800 p-6">
+            <p class="text-slate-400 lg:mt-0 mt-4">
+                Hello, guys! This is my first post. Solving 350 questions on the LeetCode platform has been a great journey for me. XYZXYZCYX xvxvx sdsfsdfsf
+            </p>
+        </div>
+    
+   
+    </div>
+    <div class="group rounded-lg shadow-lg hover:shadow-lg dark:shadow-gray-700 transition-all duration-500">
+        <div class="flex items-center justify-between p-6">
+            <div class="flex items-center">
+                <div class="w-14 h-14 flex items-center justify-center bg-white dark:bg-slate-900 shadow dark:shadow-gray-700 rounded-md">
+                    <img src="assets/images/team/01.jpg" class="h-8 w-8" alt="">
+                </div>
+    
+                <div class="ms-3">
+                    <a href="employer-profile.html" class="block text-lg font-semibold hover:text-emerald-600 transition-all duration-500">Sujal Pandey</a>
+                    <span class="block text-sm text-slate-400">2 days ago</span>
+                </div>
+            </div>
+            <div class="dropdown inline-block relative ps-1">
+                <button data-dropdown-toggle="dropdown" class="dropdown-toggle items-center" type="button">
+                    <span class="btn btn-icon rounded-full bg-emerald-600 hover:bg-emerald-700 border-emerald-600 hover:border-emerald-700 text-white">
+                        <i class="uil uil-direction"></i>
+                    </span>
+                </button>
+    
+                <div class="dropdown-menu absolute end-0 m-0 mt-4 z-10 w-44 rounded-md overflow-hidden bg-white dark:bg-slate-900 shadow dark:shadow-gray-700 hidden" onclick="event.stopPropagation();">
+                    <ul class="py-2 text-start">
+                        <li>
+                            <a href="#" class="flex items-center font-medium py-2 px-4 dark:text-white/70 hover:text-emerald-600 dark:hover:text-white">
+                                <iconify-icon icon="mdi:edit" style="margin-right: 8px;"></iconify-icon>
+                             Edit Post
+                            </a>
+                        </li>
+                        <li class="border-t border-gray-100 dark:border-gray-800 my-2"></li>
+                        <li>
+                            <a href="#" class="flex items-center font-medium py-2 px-4 dark:text-white/70 hover:text-emerald-600 dark:hover:text-white" data-toggle="modal" data-target="#deletePostModal">
+                                <iconify-icon icon="mdi:delete" style="margin-right: 8px;"></iconify-icon>
+                                Delete Post
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    
+        <div class="lg:flex items-center justify-between border-t border-gray-100 dark:border-gray-800 p-6">
+            <p class="text-slate-400 lg:mt-0 mt-4">
+                Hello, guys! This is my first post. Solving 350 questions on the LeetCode platform has been a great journey for me. XYZXYZCYX xvxvx sdsfsdfsf
+            </p>
+        </div>
+    
+       
+    </div>end content -->
+    </div>
+</div>
+                       </div>
+
                     </div><!--end col-->
-
                     <div class="lg:col-span-4 md:col-span-5">
                         <div class="bg-slate-50 dark:bg-slate-800 rounded-md shadow dark:shadow-gray-700 p-6 sticky top-20">
                             <h5 class="text-lg font-semibold">Personal Detail:</h5>
@@ -278,7 +479,7 @@
                                 <li class="flex justify-between mt-3 items-center font-medium">
                                     <span><i data-feather="mail" class="h-4 w-4 text-slate-400 me-3 inline"></i><span class="text-slate-400 me-3">Email  :</span></span>
                                     
-                                    <span> email </span>
+                                    <span><%=email%></span>
                                 </li>
                                 <li class="flex justify-between mt-3 items-center font-medium">
                                     <span><i data-feather="gift" class="h-4 w-4 text-slate-400 me-3 inline"></i><span class="text-slate-400 me-3">D.O.B. :</span></span>
@@ -288,7 +489,7 @@
                                 <li class="flex justify-between mt-3 items-center font-medium">
                                     <span><i data-feather="home" class="h-4 w-4 text-slate-400 me-3 inline"></i><span class="text-slate-400 me-3">Address :</span></span>
                                     
-                                    <span>Saket</span>
+                                    <span> <%=city %></span>
                                 </li>
                                 <li class="flex justify-between mt-3 items-center font-medium">
                                     <span><i data-feather="map-pin" class="h-4 w-4 text-slate-400 me-3 inline"></i><span class="text-slate-400 me-3">City :</span></span>
@@ -299,16 +500,6 @@
                                     <span><i data-feather="globe" class="h-4 w-4 text-slate-400 me-3 inline"></i><span class="text-slate-400 me-3">Country :</span></span>
                                     
                                     <span>India</span>
-                                </li>
-                                <li class="flex justify-between mt-3 items-center font-medium">
-                                    <span><i data-feather="server" class="h-4 w-4 text-slate-400 me-3 inline"></i><span class="text-slate-400 me-3">Postal Code :</span></span>
-                                    
-                                    <span>110018</span>
-                                </li>
-                                <li class="flex justify-between mt-3 items-center font-medium">
-                                    <span><i data-feather="phone" class="h-4 w-4 text-slate-400 me-3 inline"></i><span class="text-slate-400 me-3">Mobile :</span></span>
-                                    
-                                    <span>+91 XXXXXXXX</span>
                                 </li>
 
                                 <li class="flex justify-between mt-3">
@@ -331,25 +522,20 @@
                                         <span class="font-medium ms-2">resume.pdf</span>
                                     </div>
 
-                                    <a href="assets/images/calvin-carlo-resume.pdf" class="btn bg-emerald-600 hover:bg-emerald-700 border-emerald-600 dark:border-emerald-600 text-white rounded-md w-full" download><i class="uil uil-file-download-alt"></i> Download CV</a>
+                                    <a href="/view/<%=ud1%>" class="btn bg-emerald-600 hover:bg-emerald-700 border-emerald-600 dark:border-emerald-600 text-white rounded-md w-full" download> <i class="uil uil-file uil-download-alt"></i>
+                                        Download CV</a>
                                 </li>
                             </ul>
                         </div>
                     </div><!--end col-->
                 </div><!--end grid-->
             </div><!--end container-->
-
-        
-
-     
-                          
-            
                             <div class="absolute -top-5 -start-5">
-                                <div class="uil uil-envelope lg:text-[150px] text-7xl text-black/5 dark:text-white/5 ltr:-rotate-45 rtl:rotate-45"></div>
+                                <div class="uil uil-envelope lg:text-[150px] text-7xl text-black/5 dark:text-white/5 ltr:-rotate-45 "></div>
                             </div>
             
                             <div class="absolute -bottom-5 -end-5">
-                                <div class="uil uil-pen lg:text-[150px] text-7xl text-black/5 dark:text-white/5 rtl:-rotate-90"></div>
+                                <div class="uil uil-pen lg:text-[150px] text-7xl text-black/5 dark:text-white/5 "></div>
                             </div>
                         </div>
                     </div><!--end grid-->
@@ -374,7 +560,7 @@
                         
                                 <div class="md:col-span-9">
                                     <ul class="list-disc footer-list ltr:md:text-right rtl:md:text-left text-center space-x-3">
-                                        <li class="inline-block"><a href="index.html" class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out font-medium">Home</a></li>
+                                        <li class="inline-block"><a href="/" class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out font-medium">Home</a></li>
                                         <li class="inline-block mt-[10px] md:mt-0"><a href="services.html" class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out font-medium">How it works</a></li>
                                         <li class="inline-block mt-[10px] md:mt-0"><a href="#" class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out font-medium">Create a job</a></li>
                                         <li class="inline-block mt-[10px] md:mt-0"><a href="aboutus.html" class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out font-medium">About us</a></li>
@@ -409,38 +595,81 @@
         </footer>
      
 
-
+        <div class="fixed top-1/4 -left-2 z-50">
+            <span class="relative inline-block rotate-90">
+                <input type="checkbox" class="checkbox opacity-0 absolute" id="chk">
+                <label class="label bg-slate-900 dark:bg-white shadow dark:shadow-gray-800 cursor-pointer rounded-full flex justify-between items-center p-1 w-14 h-8" for="chk">
+                    <i class="uil uil-moon text-[20px] text-yellow-500"></i>
+                    <i class="uil uil-sun text-[20px] text-yellow-500"></i>
+                    <span class="ball bg-white dark:bg-slate-900 rounded-full absolute top-[2px] left-[2px] w-7 h-7"></span>
+                </label>
+            </span>
+        </div>
         <a href="#" onclick="topFunction()" id="back-to-top" class="back-to-top fixed hidden text-lg rounded-full z-10 bottom-5 end-5 h-9 w-9 text-center bg-emerald-600 text-white justify-center items-center"><i class="uil uil-arrow-up"></i></a>
 
-        <script src="assets/libs/feather-icons/feather.min.js"></script>
-        <script src="assets/js/plugins.init.js"></script>
-        <script src="assets/js/app.js"></script>
 
-        <script>
-            function handleSearchChange() {
-                var searchInput = document.getElementById("searchInput");
-                var searchResults = document.getElementById("searchResults");
-    
-                var searchTerm = searchInput.value;
-    
-                // Make an AJAX request to send the form data
-                var xhr = new XMLHttpRequest();
-                xhr.open("POST", "/search", true);
-                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState === 4 && xhr.status === 200) {
-                        var results = JSON.parse(xhr.responseText);
-    
-                        // Update the search results on the frontend
-                        if(results.length>0){
-                        searchResults.innerHTML = results.map(result => `<div><li>${result.name}</li><hr/> </div>`).join('');
-                    }}
-                    if (searchResults.textContent.trim()!== ''){
-                      searchResults.style.padding = '10px';
+        <div class="modal fade" id="deletePostModal" tabindex="-1" role="dialog" aria-labelledby="deletePostModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deletePostModalLabel">Delete Post Confirmation</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to delete this post?</p>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="confirmDeleteCheckbox">
+                            <label class="form-check-label" for="confirmDeleteCheckbox">Yes, I'm sure</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                        <button type="button" class="btn btn-danger" id="confirmDeleteButton">Yes, Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="assets/libs/tobii/js/tobii.min.js"></script>
+    <script src="assets/libs/choices.js/public/assets/scripts/choices.min.js"></script>
+    <script src="assets/libs/feather-icons/feather.min.js"></script>
+    <script src="assets/js/plugins.init.js"></script>
+    <script src="assets/js/app.js"></script>
+        <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script>{
+            
+let btn = document.getElementById("connectButton");
+let disp = document.getElementById("notificationCount");
+let count=0;
+btn.addEventListener("click", function () {
+    count++;
+    disp.textContent = count;
+});
+
+
+const connectButton = document.getElementById('connectButton');
+connectButton.addEventListener('click', function () {
+    // Check if the button is in the connected state
+    const isConnected = connectButton.classList.contains('connected');
+
+    if (isConnected) {
+        // Toggle back to the initial state
+        connectButton.classList.remove('connected');
+        connectButton.innerHTML = '<i class="uil uil-user-plus"></i> Connect';
+    } else {
+        // Change the button styles
+        connectButton.classList.add('connected');
+        // Update the button content
+        connectButton.innerHTML = '<i class="uil uil-check"></i> Connected';
+
     }
-                };
-                xhr.send("find_prof=" + searchTerm);
-            }
+});
+
+}
         </script>
         <!-- JAVASCRIPTS -->
     </body>

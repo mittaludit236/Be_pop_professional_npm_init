@@ -2,6 +2,13 @@ const express=require("express");
 const app=express();
 var vld=false;
 var isV=false;
+const currentDate = new Date();
+var ud;
+const year = currentDate.getFullYear();
+const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+const day = String(currentDate.getDate()).padStart(2, '0');
+
+const formattedDate = `${year}-${month}-${day}`;
 const multer = require('multer');
 var userId,nm;
 const fs = require('fs');
@@ -23,6 +30,7 @@ require("dotenv").config();
 const ejs = require("ejs");
 const User=require("./models/User");
 const Guser=require("./models/google_user");
+const Post=require("./models/posts");
 const bcrypt=require("bcrypt");
 const {getToken}=require("./utilities/help");
 // const authR=require("./routes/auth");
@@ -32,7 +40,9 @@ const nodemailer=require("nodemailer");
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 app.use("/profile_pg",express.static("public"));
+app.use("/profile_pg1",express.static("public"));
 app.use("/set",express.static("public"));
+app.use("/community",express.static("public"));
 var ema,token;
 const crypto=require("crypto");
 app.use(session({
@@ -219,14 +229,17 @@ app.get("/profile_pg/:id",requireAuthenticate,async(req,res)=>{
   var uer=await User.findOne({_id: req.params.id});
   if(!uer)
   uer=await Guser.findOne({_id: req.params.id});
-  if(uer.Banner.size!=0 && uer.Profile.size!=0)
-  res.render("profile_pg",{name: uer.Name, skills: uer.skills,exp: uer.experiences,edu: uer.Education,email: uer.email,city: uer.Location,intro: uer.Intro,ud: req.params.id,nm: uer.Profile[0].name,bnm: uer.Banner[0].name});
-  else if(uer.Banner.size!=0)
-  res.render("profile_pg",{name: uer.Name, skills: uer.skills,exp: uer.experiences,edu: uer.Education,email: uer.email,city: uer.Location,intro: uer.Intro,ud: req.params.id,nm: "01.jpg",bnm: uer.Banner[0].name});
-  else if(uer.Profile.size!=0)
-  res.render("profile_pg",{name: uer.Name, skills: uer.skills,exp: uer.experiences,edu: uer.Education,email: uer.email,city: uer.Location,intro: uer.Intro,ud: req.params.id,nm:uer.Profile[0].name,bnm: "01.jpg"});
+  ud=req.params.id;
+  console.log(uer.Profile[0].name);
+  console.log(uer.Banner);
+  if(uer.Banner && uer.Profile)
+  res.render("profile_pg",{name: uer.Name, skills: uer.skills,exp: uer.experiences,edu: uer.Education,email: uer.email,city: uer.Location,intro: uer.Intro,ud: req.params.id,nm: uer.Profile[0].name,bnm: uer.Banner[0].name,posts: uer.Posts});
+  else if(uer.Banner)
+  res.render("profile_pg",{name: uer.Name, skills: uer.skills,exp: uer.experiences,edu: uer.Education,email: uer.email,city: uer.Location,intro: uer.Intro,ud: req.params.id,nm: "01.jpg",bnm: uer.Banner[0].name,posts: uer.Posts});
+  else if(uer.Profile)
+  res.render("profile_pg",{name: uer.Name, skills: uer.skills,exp: uer.experiences,edu: uer.Education,email: uer.email,city: uer.Location,intro: uer.Intro,ud: req.params.id,nm:uer.Profile[0].name,bnm: "01.jpg",posts: uer.Posts});
   else
-  res.render("profile_pg",{name: uer.Name, skills: uer.skills,exp: uer.experiences,edu: uer.Education,email: uer.email,city: uer.Location,intro: uer.Intro,ud: req.params.id,nm: "01.jpg",bnm: "01.jpg"});
+  res.render("profile_pg",{name: uer.Name, skills: uer.skills,exp: uer.experiences,edu: uer.Education,email: uer.email,city: uer.Location,intro: uer.Intro,ud: req.params.id,nm: "01.jpg",bnm: "01.jpg",posts: uer.Posts});
 });
 app.post("/forget",async(req,res)=>{
     vld=false;
@@ -328,16 +341,16 @@ app.get("/set/:id",requireAuthenticate,async(req,res)=>{
   if(!uer)
   uer=await GUser.findOne({_id: req.params.id})
   console.log(req.params.id);
-  if(uer.Banner.size!=0 && uer.Profile.size!=0)
+  if(uer.Banner && uer.Profile)
   res.render("candidate-profile",{ud: req.params.id,nm: uer.Profile[0].name,bnm: uer.Banner[0].name});
-  else if(uer.Banner.size!=0)
+  else if(uer.Banner)
   res.render("candidate-profile",{ud: req.params.id,nm: "01.jpg",bnm: uer.Banner[0].name});
-  else if(uer.Profile.size!=0)
+  else if(uer.Profile)
   res.render("candidate-profile",{ud: req.params.id,nm:uer.Profile[0].name,bnm: "01.jpg"});
   else
   res.render("candidate-profile",{ud: req.params.id,nm: "01.jpg",bnm: "01.jpg"});
 });
-app.post("/set/:id",multipleUploads,async(req,res)=>{
+app.post("/set/:id",requireAuthenticate,multipleUploads,async(req,res)=>{
   const p1="/set/"+req.params.id;
   const p2="/profile_pg/"+req.params.id;
   var uer=await User.findOne({_id: req.params.id});
@@ -434,7 +447,7 @@ app.post("/set/:id",multipleUploads,async(req,res)=>{
 
 // Create an experience object using the ExperienceSchema
 });
-app.get('/view/:id', async (req, res) => {
+app.get('/view/:id',async (req, res) => {
   try {
     const profile = await User.findOne({_id: req.params.id});
    
@@ -458,6 +471,62 @@ app.get('/view/:id', async (req, res) => {
     res.status(500).json({ message: 'Internal Server Error' });
 }
 });
-app.listen(3000,()=>{
-    console.log("Server started on port 3000");
+app.get("/community/:id",requireAuthenticate,async(req,res)=>{
+  const posts = await Post.find();
+  // var uer=await User.findOne({_id: req.params.id});
+  // if(!uer)
+  // uer=await Guser.findOne({_id: req.params.id});
+  // console.log(uer.Profile);
+  // // if(uer.Profile)
+  // // res.render("community",{ud: req.params.id,posts,nm: uer.Profile[0].name});
+  // // else
+  res.render("community",{ud: req.params.id,posts});
+});
+app.post("/community/:id",requireAuthenticate,upload.single("postImage"),async(req,res)=>{
+  var uer=await User.findOne({_id: req.params.id});
+  if(!uer)
+  uer=await Guser.findOne({_id: req.params.id});
+  const x=req.file;
+  console.log(x);
+  const newI={
+    name: x.originalname,
+    iname: "post_"+req.params.id,
+    data: x.buffer,
+    contentType: x.mimetype,
+  };
+  const newPost={
+    name: uer.Name,
+    id: uer._id,
+    date: formattedDate,
+    describe: req.body.describe,
+    image: newI,
+  };
+  const pst=await Post.create(newPost);
+  uer.Posts.push(newPost);
+  uer.save();
+  console.log("Posted");
+  res.redirect("/profile_pg/"+req.params.id);
+  
+});
+app.get("/messaging",requireAuthenticate,async(req,res)=>{
+  const users = await User.find();
+  res.render("messaging",{users});
+});
+app.get("/profile_pg1/:id",requireAuthenticate,async(req,res)=>{
+  var uer=await User.findOne({_id: req.params.id});
+  if(!uer)
+  uer=await Guser.findOne({_id: req.params.id});
+  console.log(uer.Profile[0].name);
+  console.log(uer.Banner);
+  if(uer.Banner && uer.Profile)
+  res.render("profile_pg1",{name: uer.Name, skills: uer.skills,exp: uer.experiences,edu: uer.Education,email: uer.email,city: uer.Location,intro: uer.Intro,ud1: req.params.id,nm: uer.Profile[0].name,bnm: uer.Banner[0].name,posts: uer.Posts,ud: ud});
+  else if(uer.Banner)
+  res.render("profile_pg1",{name: uer.Name, skills: uer.skills,exp: uer.experiences,edu: uer.Education,email: uer.email,city: uer.Location,intro: uer.Intro,ud1: req.params.id,nm: "01.jpg",bnm: uer.Banner[0].name,posts: uer.Posts,ud: ud});
+  else if(uer.Profile)
+  res.render("profile_pg1",{name: uer.Name, skills: uer.skills,exp: uer.experiences,edu: uer.Education,email: uer.email,city: uer.Location,intro: uer.Intro,ud1: req.params.id,nm:uer.Profile[0].name,bnm: "01.jpg",posts: uer.Posts,ud: ud});
+  else
+  res.render("profile_pg1",{name: uer.Name, skills: uer.skills,exp: uer.experiences,edu: uer.Education,email: uer.email,city: uer.Location,intro: uer.Intro,ud1: req.params.id,nm: "01.jpg",bnm: "01.jpg",posts: uer.Posts,ud: ud});
+})
+app.listen(3001,()=>{
+    console.log("Server started on port 3001");
 });
