@@ -5,6 +5,7 @@ const Education=require("./Education").schema;
 const File=require("./File").schema;
 const profile=require("./profile").schema;
 const banner=require("./banner").schema;
+const post=require("./posts").schema;
 const UserSchema=new mongoose.Schema({
     Name:{
         type: String,
@@ -38,6 +39,7 @@ const UserSchema=new mongoose.Schema({
     Files: [ File ],
     Profile: [ profile ],
     Banner : [ banner ],
+    Posts: [ post ],
 });
 const User=mongoose.model("User",UserSchema);
 module.exports=User;

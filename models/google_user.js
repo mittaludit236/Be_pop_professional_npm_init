@@ -5,6 +5,7 @@ const Education=require("./Education").schema;
 const File=require("./File").schema;
 const profile=require("./profile").schema;
 const banner=require("./banner").schema;
+const post=require("./posts").schema;
 const GSchema=new mongoose.Schema({
     Name:{
         type: String,
@@ -31,6 +32,7 @@ const GSchema=new mongoose.Schema({
     Files: [ File ],
     Profile: [ profile ],
     Banner : [ banner ],
+    Posts: [ post ],
 });
 const Guser=mongoose.model("Guser",GSchema);
 module.exports=Guser;
